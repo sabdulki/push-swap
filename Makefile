@@ -14,24 +14,25 @@ SRCS = push_swap.c ex_join.c utils.c start_sorting.c
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+# LIBFT = ./libft-42/libft.a
 NAME = push_swap
+
+$(NAME): $(OBJS)
+	cd libft-42 && make && make bonus
+	$(CC) $(CFLAGS) $(OBJS)  libft-42/libft.a -o $(NAME)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	cd libft && make && make bonus
-	$(CC) $(OBJS) $(CFLAGS) libft/libft.a -o $(NAME)
-
 clean : 
 	rm -f push_swap $(OBJS)
-	cd libft && make clean
+	cd libft-42 && make clean
 
 fclean : clean
 	rm -f $(NAME)
-	cd libft && make fclean
+	cd libft-42 && make fclean
 
 re : fclean all
-	cd libft && make fclean && make all
+	cd libft-42 && make fclean && make all
 
 .PHONY : all clean fclean re bonus

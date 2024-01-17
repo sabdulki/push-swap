@@ -17,10 +17,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-# include "./libft/libft.h"
+# include "./libft-42/libft.h"
 
 typedef struct s_element{
 	struct	s_element *next;
+	struct	s_element *prev;
 	int		data;
 }	t_element;
 
@@ -33,8 +34,10 @@ void print_args(char **argv);
 void ft_error(void);
 char	*ft_ex_join(int size, char **strs, char *sep);
 void print_elements(t_stack* stack);
-void	push(t_stack* stack, int num);
-int find_min(t_stack* stack);
+int	push(t_stack* stack, int num, int amount);
+t_element* find_min(t_stack* stack);
+void	for_two(t_stack *a);
+
 
 
 //build

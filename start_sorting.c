@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int find_min(t_stack* a)
+t_element* find_min(t_stack* a)
 {
 	t_element *tmp;
 	t_element *min;
@@ -26,6 +26,38 @@ int find_min(t_stack* a)
 		tmp = tmp->next;
 	}
 	//printf("min is: %d ", min->data);
-	return (min->data);
+	return (min);
 }
 
+
+// void	for_two(t_stack *a)
+// {
+// 	t_element *tmp = NULL;
+// 	t_element *min;
+
+// 	min = find_min(a);
+// 	if (a->top->data != min->data)
+// 	{
+// 		tmp = a->top;
+// 		a->top= min;
+// 		min = tmp;
+// 	}
+// 	printf("sa\n");
+// 	print_elements(a);
+// }
+
+void	for_two(t_stack *a)
+{
+	int tmp;
+	t_element *min;
+
+	min = find_min(a);
+	if (a->top->data != min->data)
+	{
+		tmp= a->top->data;
+		a->top->data = min->data;
+		min->data = tmp;
+	}
+	printf("sa\n");
+	print_elements(a);
+}

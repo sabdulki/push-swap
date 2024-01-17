@@ -18,6 +18,7 @@ void parsing(int argc, char **argv, t_stack *stack)
 	char **future_stack;
 	int arg;
 	int  num;
+	int amount = 0;
 
 	arg = 1;
 	str = ft_ex_join(argc, argv, " ");
@@ -26,11 +27,10 @@ void parsing(int argc, char **argv, t_stack *stack)
 	while(future_stack[arg])
 	{
 		num = ft_atoi(future_stack[arg]);
-		push(stack, num);
+		amount = push(stack, num, amount);
 		print_elements(stack);
 		arg++;
 	}
-	
 }
 
 t_stack *make_base_for_stack()
@@ -40,13 +40,19 @@ t_stack *make_base_for_stack()
 	return (stack);
 }
 
-void	push(t_stack* stack, int num)
+int	push(t_stack* stack, int num, int amount)
 {
 	t_element *newNum;
 	newNum = malloc(sizeof(t_element));
 	newNum->data = num;
 	newNum->next = stack->top;
+	newNum->prev = NULL;
+	if (stack->top)
+		stack->top->prev = newNum;
     stack->top = newNum;
+	amount += 1;
+	printf("the new top is: %d\n", stack->top->data);
+	return(amount);
 }
 
 void check_dups(t_stack *stack)
@@ -75,6 +81,7 @@ t_stack *preparation(int argc, char **argv)
 	stack = make_base_for_stack();
 	parsing(argc, argv, stack);
 	check_dups(stack);
+	return(stack);
 }
 
 
@@ -87,8 +94,12 @@ int main (int argc, char **argv)
 		// call function
 
 	t_stack *a; 
-	int min;
+	// t_element* min;
 	
 	a = preparation(argc, argv);
-	min = find_min(a);
+	find_min(a);
+	// printf("the new top is: %d\n", a->top->data);
+	
+	for_two(a);
+	// printf("min: %d\n", min->data);
 }

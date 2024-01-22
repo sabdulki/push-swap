@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = push_swap.c ex_join.c utils.c start_sorting.c
+SRCS = push_swap.c ex_join.c utils.c start_sorting.c parsing.c operations.c methods.c
 OBJS = $(SRCS:.c=.o)
 
 CC = cc

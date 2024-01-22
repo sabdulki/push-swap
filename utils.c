@@ -15,6 +15,7 @@
 void ft_error(void)
 {
 	write(1, "Error\n", 6);
+	// free everything!!!!!!
 	exit(0);
 }
 
@@ -29,7 +30,12 @@ void print_args(char **argv)
 
 void print_elements(t_stack* stack)
 {
-	printf("the elments of stack are:\n");
+	if (is_empty(stack) == true)
+	{
+		printf("there are no elements in the stack 'cause it is empty!\n");
+		return ;
+	}
+	printf("the elements of stack are:\n");
 	t_element *head;
 	
 	head = stack->top;
@@ -39,3 +45,4 @@ void print_elements(t_stack* stack)
 		head = head->next;
 	}
 }
+

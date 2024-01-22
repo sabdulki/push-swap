@@ -46,7 +46,7 @@ char	*make_an_array(int size, char **strs, char *sep, char *str)
 	int		big_str_ctn;
 	int		chars_in_small;
 
-	index = 0;
+	index = 1;
 	big_str_ctn = 0;
 	chars_in_small = 0;
 	while (index < size) //strs[index] &&
@@ -77,7 +77,7 @@ char	*ft_ex_join(int size, char **strs, char *sep)
 	int		len_sep;
 
 	len_all = 0;
-	index = 0;
+	index = 1;
 	len_sep = 0;
 	if (size == 0)
 	{

@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdbool.h>
-# include "./libft-42/libft.h"
+# include "./libft/libft.h"
 // # include "./ft_printf/ft_printf.h"
 
 typedef struct s_element{
@@ -31,6 +31,13 @@ typedef struct s_stack{
 	t_element *top;
 	int amount;
 }	t_stack;
+
+typedef struct s_dict{  //dictionary
+	int value; // разница a->data - b->data
+	int key;
+	struct s_dict *next;
+} t_dict;
+
 
 // parsing
 void parsing(int argc, char **argv, t_stack *stack);
@@ -58,7 +65,19 @@ t_element *get_last_elem(t_stack *stack);
 // t_stack* make_base_for_stack();
 t_element* find_min(t_stack* stack);
 t_element* find_max(t_stack *stack);
-void	for_two(t_stack *a);
+void	sort_two(t_stack *a);
+void	sort_three(t_stack *a);
+int	determination(t_stack *a);
+int		is_ascending(t_stack *a);
+void	sort(t_stack *a, t_stack *b);
+
+
+// list dict
+int		l_find_min(t_dict *dict);
+t_dict*		init_dictionary();
+int		find_target(t_stack *a, t_stack *b);
+
+
 
 
 // operations

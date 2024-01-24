@@ -6,20 +6,24 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:54:43 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/22 18:13:07 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:13:28 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	is_empty(t_stack* stack)
+int		determination(t_stack *a)
 {
-	if (stack->amount == 0)
-		return (true); // 1
-	return (false); // 0 
+	if (a->amount == 2)
+		sort_two(a);
+	else if (a->amount == 3)
+		sort_three(a);
+	else if (a->amount > 3)
+		printf("\tready to sort. stack has more tham 3 numbers\n");
+	return (0);
 }
 
-int	push(t_stack* stack, int num) //, int amount)
+int	push(t_stack* stack, int num)
 {
 	t_element *newNum;
 
@@ -39,7 +43,7 @@ int	push(t_stack* stack, int num) //, int amount)
 
 int	pop(t_stack* stack)
 {
-	if (is_empty(stack) == true)
+	if (is_empty(stack))
 	{
 		printf("you can't pop an element 'cause the stack is empty\n");
 		return (0);
@@ -53,7 +57,10 @@ int	pop(t_stack* stack)
 	free(tmp);
 	
 	if (stack->top)
+	{
 		printf("new top after popping is: %d\n", stack->top->data);
+		printf("amount: %d\n", stack->amount);
+	}
 	return (0);
 }
 
@@ -63,24 +70,11 @@ int	peek(t_stack * stack)
 	return (stack->top->data);
 }
 
-t_element *get_last_elem(t_stack *stack)
-{
-	t_element *tmp2;
-	
-	tmp2 = stack->top;
-	while(tmp2 && tmp2->next != NULL)
-	{
-		tmp2 = tmp2->next;
-	}
-	printf("the last elem of this stack is: %d\n", tmp2->data);
-	return (tmp2);
-}
-
 int destroy(t_stack *stack)
 {
 	if (!stack)
 		return (0);
-	if (is_empty(stack) == true)
+	if (is_empty(stack))
 	{
 		printf("you can't destroy the stack 'cause it is empty\n");
 		return (0);
@@ -92,4 +86,3 @@ int destroy(t_stack *stack)
 	printf("the stack has been sucsessfully destroyed!");
 	return (0);
 }
-

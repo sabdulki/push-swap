@@ -16,6 +16,7 @@ t_stack *make_base_for_stack()
 {
 	t_stack *stack = malloc(sizeof(t_stack));
 	stack->top = NULL;
+	stack->amount = 0;
 	return (stack);
 }
 
@@ -41,6 +42,15 @@ int main (int argc, char **argv)
 	
 	a = preparation(argc, argv);
 	b = make_base_for_stack();
+	
+	if (is_ascending(a))
+		return (0);
+	else
+	{
+		printf("\n\t----- start of sorting -----\t\n");
+		determination(a);
+	}
+	sort(a, b);
 
 	// rev_rotate_move(a);
 	// rotate_move(a);
@@ -57,7 +67,8 @@ int main (int argc, char **argv)
 	
 
 	
-	// printf("the new top is: %d\n", a->top->data);
+	// printf("amount a: %d\n", a->amount);
+	// printf("amount b: %d\n", b->amount);
 	
 	// for_two(a);
 	// printf("min: %d\n", min->data);

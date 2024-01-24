@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:14:34 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/22 16:40:06 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:28:31 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void parsing(int argc, char **argv, t_stack *stack)
 	int arg;
 	int  num;
 	
-	stack->amount = 0;
 	str = ft_ex_join(argc, argv, " "); // deleted the name of programm from arguments
 	// protection
 	check_if_int(str);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 14:57:26 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/22 18:46:17 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:29:34 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@ void	push_move(t_stack *a, t_stack *b)
 	a->top = a->top->next;
 	if (a->top)
 		a->top->prev = NULL;
+	a->amount -= 1;
 	push(b, tmp->data);
+	
 	printf("stack a:");
 	print_elements(a);
 	printf("stack b:");
 	print_elements(b);
+	printf("\n--- push_move done ---\n");
 }
 
 void	rotate_move(t_stack *stack)
@@ -51,7 +54,6 @@ void	rotate_move(t_stack *stack)
 	t_element	*tmp;
 	int			first_int;
 	
-	printf("\n--- rotate is starting here ---\n");
 	first_int = stack->top->data;
 	tmp = stack->top;
 	while(tmp && tmp->next)
@@ -69,7 +71,6 @@ void	rev_rotate_move(t_stack *stack)
 	t_element	*last;
 	int			last_int;
 	
-	printf("\n--- reverse rotate is starting here ---\n");
 	last = get_last_elem(stack);
 	last_int = last->data;
 	while(last && last->prev != NULL)

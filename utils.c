@@ -30,7 +30,7 @@ void print_args(char **argv)
 
 void print_elements(t_stack* stack)
 {
-	if (is_empty(stack) == true)
+	if (is_empty(stack))
 	{
 		printf("there are no elements in the stack 'cause it is empty!\n");
 		return ;

@@ -33,8 +33,9 @@ typedef struct s_stack{
 }	t_stack;
 
 typedef struct s_dict{  //dictionary
-	int value; // разница a->data - b->data
 	int key;
+	int value; // разница a->data - b->data
+	// int target;
 	struct s_dict *next;
 } t_dict;
 
@@ -69,15 +70,23 @@ void	sort_two(t_stack *a);
 void	sort_three(t_stack *a);
 int	determination(t_stack *a);
 int		is_ascending(t_stack *a);
+
+// sorting
+int		min(int x, int y);
 void	sort(t_stack *a, t_stack *b);
+void	main_process (t_stack *a, t_stack *b);
 
 
 // list dict
+t_dict* create_dictinary(t_stack *b);
+
+
+
+// target
+int		find_target(t_dict* head_dict);
 int		l_find_min(t_dict *dict);
-t_dict*		init_dictionary();
-int		find_target(t_stack *a, t_stack *b);
-
-
+int		l_find_max(t_dict* dict);
+t_dict*	find_value(int num_a, t_stack *b);
 
 
 // operations

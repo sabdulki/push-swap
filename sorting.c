@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:09:57 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/24 20:09:59 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/25 19:49:48 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,14 @@ void	sort(t_stack *a, t_stack *b)
 		tmp_a = tmp_a->next;
 		iter_count--;
 	}
-	// while(a->amount != 3)
-	// {
-		find_target(a, b);
-		// tmp_a = tmp_a->next;
-	// }
+	while(a->amount != 3)
+	{
+		main_process(a, b);
+		//count steps
+		//compare steps (which number is chepest to move)
+		//make a move
+		//durng the push_move a->amount =-1 
+	}
 	
 }
 

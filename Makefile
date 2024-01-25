@@ -12,7 +12,8 @@
 
 SRCS = push_swap.c ex_join.c utils.c alg_utils.c \
 		parsing.c moves.c methods.c sort_2_3.c \
-		sorting.c find_target_num.c
+		sorting.c find_target_num.c create_dictionary.c \
+		
 OBJS = $(SRCS:.c=.o)
 
 CC = cc

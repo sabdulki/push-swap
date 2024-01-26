@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:38:01 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/25 18:45:35 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/26 21:00:30 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ t_dict* create_dictinary(t_stack *b)
        ft_error();
 
     // Инициализируем данные и указатель на следующий узел
-    head->key = 0; // Например, начнем с 0
-	head->value = 0;
 	
-	i = 0;
+	i = 1;
+    head->a_int = 0;
+	head->value = 0;
     head->next = NULL;
     current = head;
 	
@@ -45,12 +45,14 @@ t_dict* create_dictinary(t_stack *b)
         // Инициализируем данные и указатель на следующий узел
         // newNode->data = i;
         newNode->next = NULL;
-
+        newNode->a_int = 0;
+	    newNode->value = 0;
         // Связываем текущий узел с новым
         current->next = newNode;
         current = newNode;
 		i++;
     }
-
-    return head;
+    // print_list(head);
+    return (head);
 }
+

@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:51:56 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/25 20:00:30 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/26 21:01:28 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@ void	main_process (t_stack *a, t_stack *b)
 {
 	t_element *tmp_a;
 	t_element *tmp_b;
+	t_dict *head_dict;
 	t_dict *dict;
 	int target;
 	tmp_a = a->top;
 	tmp_b = b->top;
 
+	head_dict = create_dictinary(b);
+	
 	while(tmp_a)
 	{
-		dict = find_value(tmp_a->data, b);
-		target = find_target(dict);
+		dict = find_value(tmp_a->data, b, head_dict);
+		target = find_target(dict, a, b);
 		printf("target for '%d' number of 'a' stack is: %d\n", tmp_a->data, target);
 		// я нашла число, к которому пойдет первое число из стака а.
 		// теперь мне надо посчитать количество шагов для первого числа из стака а до его таргета.
@@ -32,7 +35,8 @@ void	main_process (t_stack *a, t_stack *b)
 		tmp_a = tmp_a->next;
 	}
 }
-int		find_target(t_dict* head_dict) // находит target-числло из b  для ОДНОГО числа из стака а
+
+int		find_target(t_dict* head_dict, t_stack *a, t_stack *b) // находит target-числло из b  для ОДНОГО числа из стака а
 {
 	t_dict *dict_node;
 	int target;
@@ -45,9 +49,12 @@ int		find_target(t_dict* head_dict) // находит target-числло из b
 	pos = 0;
 	neg = 0;
 	i = 0;
-	
-	// если no_dict->key = самое маленькое число стака а, то его target = l_find_max;
-	// если no_dict->key = самое большое число стака а, то его target = l_find_min;
+	target = target_for_max_min(dict_node, a, b);
+	if (target != 0) // NOT SAFE!!!!
+	{
+		free_dict(head_dict);
+		return (target);
+	}
 	while(dict_node)
 	{
 		if (dict_node->value >= 0)
@@ -58,64 +65,47 @@ int		find_target(t_dict* head_dict) // находит target-числло из b
 		dict_node = dict_node->next;
 	}
 	if (i == pos) //all values of dict are posistive
-		target = l_find_min(dict_node);
+		target = l_find_min(head_dict);
 	else if (i == neg || (i != neg && i != pos)) // all values of dict are negative
-		target = l_find_max(dict_node); // values are both positive and negative
+		target = l_find_max(head_dict); // values are both positive and negative
+	free_dict(head_dict);
 	return (target);
 }
 
-int		l_find_min(t_dict *dict)
+int	target_for_max_min(t_dict *head_dict, t_stack *a, t_stack *b)
 {
-	t_dict *tmp;
-	t_dict *min;
+	t_element* min_in_a;
+	t_element* max_in_a;
+	t_element* min_in_b;
+	t_element* max_in_b;
 
-	tmp = dict;
-	min = dict;
-	while(tmp)
-	{
-		if (tmp->value < min->value)
-			min = tmp;
-		tmp = tmp->next;
-	}
-	printf("\nthe min is: %d\n", min->key);
-	return (min->key);
+	min_in_a = find_min(a);
+	max_in_a = find_max(a);
+	min_in_b = find_min(b);
+	max_in_b = find_max(b);
+	if (head_dict->a_int == min_in_a->data)
+		return (max_in_b->data);
+	else if (head_dict->a_int == max_in_a->data)
+		return (min_in_b->data);
+	return (0);
 }
 
-int		l_find_max(t_dict* dict)
-{
-	t_dict *tmp;
-	t_dict *max;
-
-	tmp = dict;
-	max = dict;
-	while(tmp)
-	{
-		if (tmp->value > max->value)
-			max = tmp;
-		tmp = tmp->next;
-	}
-	printf("\nthe max is: %d\n", max->key);
-	return (max->key);
-}
-
-t_dict*	find_value(int num_a, t_stack *b) // находит все value для ОДНОГО числа из стака а
+t_dict*	find_value(int num_a, t_stack *b, t_dict *head_dict) // находит все value для ОДНОГО числа из стака а
 {
 	t_element *tmp_b;
-	t_dict *head_dict;
 	t_dict *dict_node;
 
-	head_dict = create_dictinary(b);
-	dict_node = head_dict;
 	tmp_b = b->top;
-
+	dict_node = head_dict;
 	// работать только с одниим числом из стака а
-	dict_node->key = num_a; // у list!!!!
 	while(tmp_b)
 	{
+		dict_node->a_int = num_a; // у list-a!!!!
 		dict_node->value = num_a - tmp_b->data;
+		dict_node->b_int = tmp_b->data;
 		dict_node = dict_node->next;
+		tmp_b = tmp_b->next;
 	}
+	print_list(head_dict);
 	return (head_dict); // или все же dict_node??
 }
-
-// определяет из всех value что я получила

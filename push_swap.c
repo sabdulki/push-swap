@@ -32,24 +32,17 @@ int main (int argc, char **argv)
 {
 	if (argc <= 2)
 		return (0);
-	
-	// if (argc == 2)
-		// call function
-
 	t_stack *a; 
 	t_stack *b;
-	// t_element* min;
 	
 	a = preparation(argc, argv);
 	b = make_base_for_stack();
-	
+
 	if (is_ascending(a))
 		return (0);
-	else
-	{
-		printf("\n\t----- start of sorting -----\t\n");
-		determination(a);
-	}
+	
+	printf("\n\t----- start of sorting -----\t\n");
+	determination(a);
 	sort(a, b);
 
 	// rev_rotate_move(a);

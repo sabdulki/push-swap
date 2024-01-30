@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "stack.h"
 
 void ft_error(void)
 {
@@ -46,3 +46,45 @@ void print_elements(t_stack* stack)
 	}
 }
 
+void print_elem_index(t_stack* stack)
+{
+	if (is_empty(stack))
+	{
+		printf("there are no elements in the stack 'cause it is empty!\n");
+		return ;
+	}
+	printf("the elements of stack are:\n");
+	t_element *head;
+	
+	head = stack->top;
+	while(head)
+	{
+		printf("num: %d - index: %d\n", head->data, head->index);
+		head = head->next;
+	}
+}
+
+
+void	change_index(t_stack* stack)
+{
+	t_element	*tmp_top;
+	int			index;
+
+	tmp_top = stack->top;
+	index = 1;
+	while(tmp_top)
+	{
+		tmp_top->index = index++;
+		tmp_top = tmp_top->next;
+	}
+	// print_elem_index(stack);
+}
+
+/*
+1  -> x
+2	1	
+3	2
+4	3
+5	4
+
+*/

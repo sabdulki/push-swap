@@ -6,11 +6,11 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:07:22 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/24 17:08:50 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:53:25 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "stack.h"
 
 void	sort_two(t_stack *a) // sa, sb
 {

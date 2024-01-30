@@ -10,10 +10,25 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = push_swap.c ex_join.c utils.c alg_utils.c \
-		parsing.c moves.c methods.c sort_2_3.c \
-		sorting.c find_target_num.c create_dictionary.c \
-		count_steps.c 
+# SRC_S_DIR := stack
+# SRC_T_DIR := target
+
+SRC_S = stack/ex_join.c \
+		stack/methods.c \
+		stack/moves.c \
+		stack/parsing.c \
+		stack/utils_stack.c \
+		stack/utils.c \
+		stack/sort_2_3.c
+
+SRC_T = target/create_dictionary.c \
+		target/find_target_num.c \
+		target/utils_dict.c
+
+# SRC_CS = steps/ \ 
+
+SRCS = $(SRC_S) $(SRC_T) push_swap.c sorting.c count_steps.c 
+		
 		
 OBJS = $(SRCS:.c=.o)
 

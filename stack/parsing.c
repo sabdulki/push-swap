@@ -6,11 +6,11 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:14:34 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/24 15:28:31 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/30 20:49:04 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "stack.h"
 
 int	arr_strlen(char **arr)
 {
@@ -69,7 +69,9 @@ void parsing(int argc, char **argv, t_stack *stack)
 	char **future_stack;
 	int arg;
 	int  num;
+	int index;
 	
+	index = 1;
 	str = ft_ex_join(argc, argv, " "); // deleted the name of programm from arguments
 	// protection
 	check_if_int(str);
@@ -82,7 +84,9 @@ void parsing(int argc, char **argv, t_stack *stack)
 	while(arg >= 0 && future_stack[arg])
 	{
 		num = ft_atoi(future_stack[arg]);
-		stack->amount = push(stack, num); //, stack->amount);
+
+		// index = push(stack, num, index); 
+		stack->amount = push(stack, num); //, index); //, stack->amount);
 		if (stack->amount == 0)
 			ft_error();
 		print_elements(stack);

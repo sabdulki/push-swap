@@ -6,11 +6,11 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:54:43 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/24 19:13:28 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/30 20:36:40 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "stack.h"
 
 int		determination(t_stack *a)
 {
@@ -23,7 +23,7 @@ int		determination(t_stack *a)
 	return (0);
 }
 
-int	push(t_stack* stack, int num)
+int	push(t_stack* stack, int num) //, int index)
 {
 	t_element *newNum;
 
@@ -31,13 +31,23 @@ int	push(t_stack* stack, int num)
 	if (!newNum)
 		return (0);
 	newNum->data = num;
+	// if (!stack->top)
+	// 	newNum->index = 0;
+	// newNum->index = 1;
 	newNum->next = stack->top;
 	newNum->prev = NULL;
+	
 	if (stack->top)
 		stack->top->prev = newNum;
+		
+	// stack->top->index = index ++;
     stack->top = newNum;
+	// stack->top->prev->index = index++;
+	
 	stack->amount += 1;
+	
 	printf("the new top is: %d\n", stack->top->data);
+	change_index(stack);
 	return (stack->amount);
 }
 
@@ -54,6 +64,7 @@ int	pop(t_stack* stack)
 	if (stack->top)
 		stack->top->prev = NULL;
 	stack->amount -= 1;
+	change_index (stack); //->top);
 	free(tmp);
 	
 	if (stack->top)

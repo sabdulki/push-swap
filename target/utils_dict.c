@@ -6,11 +6,11 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 20:57:25 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/26 21:01:33 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:43:59 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "target.h"
 
 int		l_find_min(t_dict *dict)
 {
@@ -26,6 +26,7 @@ int		l_find_min(t_dict *dict)
 		tmp = tmp->next;
 	}
 	// printf("\nthe min is: %d\n", min->b_int);
+
 	return (min->b_int);
 }
 

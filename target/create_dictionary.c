@@ -6,11 +6,11 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:38:01 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/26 21:00:30 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/26 21:38:25 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "target.h"
 
 t_dict* create_dictinary(t_stack *b) 
 {

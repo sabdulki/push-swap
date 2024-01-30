@@ -6,11 +6,11 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:51:56 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/26 21:01:28 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:52:35 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "target.h"
 
 void	main_process (t_stack *a, t_stack *b) 
 {
@@ -28,8 +28,9 @@ void	main_process (t_stack *a, t_stack *b)
 	{
 		dict = find_value(tmp_a->data, b, head_dict);
 		target = find_target(dict, a, b);
-		printf("target for '%d' number of 'a' stack is: %d\n", tmp_a->data, target);
+		printf("target for '%d' number of 'a' stack is: %d\n\n", tmp_a->data, target);
 		// я нашла число, к которому пойдет первое число из стака а.
+		// int steps = count_steps(a, b, tmp_a, target);
 		// теперь мне надо посчитать количество шагов для первого числа из стака а до его таргета.
 		// a function to do this
 		tmp_a = tmp_a->next;
@@ -52,7 +53,7 @@ int		find_target(t_dict* head_dict, t_stack *a, t_stack *b) // находит ta
 	target = target_for_max_min(dict_node, a, b);
 	if (target != 0) // NOT SAFE!!!!
 	{
-		free_dict(head_dict);
+		// free_dict(head_dict);
 		return (target);
 	}
 	while(dict_node)
@@ -68,7 +69,7 @@ int		find_target(t_dict* head_dict, t_stack *a, t_stack *b) // находит ta
 		target = l_find_min(head_dict);
 	else if (i == neg || (i != neg && i != pos)) // all values of dict are negative
 		target = l_find_max(head_dict); // values are both positive and negative
-	free_dict(head_dict);
+	// free_dict(head_dict);
 	return (target);
 }
 

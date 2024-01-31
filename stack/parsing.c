@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:14:34 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/30 20:49:04 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:42:37 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void parsing(int argc, char **argv, t_stack *stack)
 		stack->amount = push(stack, num); //, index); //, stack->amount);
 		if (stack->amount == 0)
 			ft_error();
-		print_elements(stack);
+		// print_elements(stack);
 		arg--;
 	}
 	check_dups(stack);

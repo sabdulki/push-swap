@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 20:35:43 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/30 21:03:53 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/31 14:44:16 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,60 +30,109 @@ how many moves would '9' alg do to reacch '4'
 
 /* return how many steps need ONE number to push into b */
 // i'll save all steps of all numbers in another function
-int count_steps(t_stack *a, t_stack *b, t_element *tmp_a, int target)
+int count_steps(t_stack *a, t_stack *b, t_element *tmp_a,  t_element *target)
 {
 	int steps_a;
 	int steps_b;
 	int all_steps;
+
+	steps_a = 0;
+	steps_b = 0;
+
+	steps_a = count_a_steps(a, tmp_a);
+	steps_b = count_b_steps(b, target);
+	
+	all_steps = steps_a + steps_b + 1;   // +1 for push_move
+	return (all_steps);
+}
+
+int		count_a_steps(t_stack *a, t_element* tmp_a)
+{
+	// t_element *last_a;
+	int steps_a;
+	int median;
+	
+	steps_a = 0;
+	median = a->amount / 2;
+	// last_a = get_last_elem(a);
+	// if (last_a->data == tmp_a->data)
+	// {
+	// 	//rev_rotate_move(a);
+	// 	steps_a += 1;
+	// }
+	if (tmp_a->index <= median)
+	{
+		steps_a = tmp_a->index - 1;
+		// while(tmp_a->data != peek(a))
+		// {
+		// 	rotate_move(a);
+		// 	steps_a++;
+		// }
+	}
+	else if(tmp_a->index > median)
+	{
+
+		steps_a = a->amount - tmp_a->index + 1;
+		// while(tmp_a->data != peek(a))
+		// {
+		// 	rev_rotate_move(a);
+		// 	steps_a++;
+		// }
+	}
+	return (steps_a);
+}
+
+int		count_b_steps(t_stack *b, t_element *target)
+{
+	t_element *tmp_b;
+	// t_element *last_b;
+	int steps_b;
 	int median;
 
-	steps_a = 0;
-	steps_a = 0;
-	all_steps = 0;
-	median = a->amount / 2;
+	tmp_b = find_target_index(b, target);
+	// last_b = get_last_elem(b);
+	median = b->amount / 2;
+	steps_b = 0;
 
-	if (tmp_a->data == peek(a))
-		steps_a += 0;
-	else
-		// function which wiil move number in 'a' to the top of 'a'
-		steps_a = count_a_steps(a, tmp_a, median);
-	
-	if (target == peek(b))
-		steps_b += 0;
-	// else
-		// function which wiil move number in 'b' to the top of 'b'
-	
-	
+	// if (last_b->data == tmp_b->data)
+	// {
+	// 	//rev_rotate_move(a);
+	// 	steps_b += 1;
+	// }
+	if (tmp_b->index <= median)
+	{
+		steps_b = tmp_b->index - 1;
+		// while(tmp_a->data != peek(a))
+		// {
+		// 	rotate_move(a);
+		// 	steps_a++;
+		// }
+	}
+	else if (tmp_b->index > median)
+	{
+
+		steps_b = b->amount - tmp_b->index + 1;
+		// while(tmp_a->data != peek(a))
+		// {
+		// 	rev_rotate_move(a);
+		// 	steps_a++;
+		// }
+	}
+	return (steps_b);
 	
 }
 
-int		count_a_steps(t_stack *a, t_element* tmp_a, int median)
+t_element *find_target_index(t_stack *b, t_element *target)
 {
-	t_element *last_a;
-	int steps_a;
+	t_element *tmp;
 	
-	steps_a = 0;
-	last_a = get_last_elem(a);
-	if (last_a->data == tmp_a->data)
+	tmp = b->top;
+	while(tmp)
 	{
-		rev_rotate_move(a);
-		steps_a++;
+		if (tmp->data == target->data)
+			return (tmp);
+		tmp = tmp->next;
 	}
-	else if (tmp_a->index >= median)
-	{
-		while(tmp_a->data != peek(a))
-		{
-			rotate_move(a);
-			steps_a++;
-		}
-	}
-	else if(tmp_a->index < median)
-	{
-		while(tmp_a->data != peek(a))
-		{
-			rev_rotate_move(a);
-			steps_a++;
-		}
-	}
-	return (steps_a);
+	printf("haven't found element with the same number. Return head of stack");
+	return(b->top);
 }

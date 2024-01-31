@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:54:43 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/30 20:36:40 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/31 19:49:58 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	push(t_stack* stack, int num) //, int index)
 	
 	stack->amount += 1;
 	
-	printf("the new top is: %d\n", stack->top->data);
+	// printf("the new top is: %d\n", stack->top->data);
 	change_index(stack);
 	return (stack->amount);
 }

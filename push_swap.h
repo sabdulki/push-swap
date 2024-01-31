@@ -26,13 +26,13 @@
 // sorting
 int		min(int x, int y);
 void	sort(t_stack *a, t_stack *b);
-void	main_process (t_stack *a, t_stack *b);
+t_dict *	find_most_profit_num (t_stack *a, t_stack *b);
 
-// count steps
-int count_steps(t_stack *a, t_stack *b, t_element *tmp_a, int target);
-
-
-
-
-
+//moving
+void	make_a_move(t_stack *a, t_stack *b, t_dict *moving_num);
+void	move_in_a(t_stack* a, t_dict *moving_num);
+t_element* find_position_in_a(t_stack* a, t_dict *moving_num);
+t_element* find_position_in_b(t_stack* b, t_dict *moving_num);
+void	move_in_b(t_stack* b,  t_dict *moving_num);
+bool	is_descending(t_stack *stack);
 #endif

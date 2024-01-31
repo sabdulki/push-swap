@@ -40,13 +40,15 @@ int main (int argc, char **argv)
 	// change_index(a);
 	b = make_base_for_stack();
 
+	// is_descending(a);
+
 	if (is_ascending(a))
 		return (0);
 	
 	print_elem_index(a);
 	printf("\n\t----- start of sorting -----\t\n");
-	// determination(a);
-	// sort(a, b);
+	determination(a);
+	sort(a, b);
 
 	// rev_rotate_move(a);
 	// rotate_move(a);

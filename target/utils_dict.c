@@ -6,11 +6,29 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 20:57:25 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/30 17:43:59 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/31 16:31:37 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "target.h"
+
+t_dict*		step_find_min(t_dict *step_dict)
+{
+	t_dict *tmp;
+	t_dict *min;
+
+	tmp = step_dict;
+	min = step_dict->next;
+	while(tmp)
+	{
+		if (tmp->value < min->value)
+			min = tmp;
+		tmp = tmp->next;
+	}
+	// printf("\nthe min is: %d\n", min->b_int);
+
+	return (min);
+}
 
 int		l_find_min(t_dict *dict)
 {
@@ -64,7 +82,8 @@ void print_list(t_dict* head)
 {
     t_dict* current = head;
     while (current != NULL) {
-        printf("\t%d-%d = %d -> ", current->a_int, current->b_int, current->value);
+		printf("\n\t'%d' steps: %d -> ", current->a_int, current->value);
+        // printf("\t%d-%d = %d -> ", current->a_int, current->b_int, current->value);
         current = current->next;
     }
     printf("NULL\n");

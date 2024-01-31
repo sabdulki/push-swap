@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 21:33:57 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/30 15:29:47 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:17:16 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,15 @@ int	target_for_max_min(t_dict *head_dict, t_stack *a, t_stack *b);
 t_dict* create_dictinary(t_stack *b);
 int		l_find_min(t_dict *dict);
 int		l_find_max(t_dict* dict);
+int		l_find_min_pos(t_dict *dict);
 void print_list(t_dict* head);
 void free_dict(t_dict* head);
 
+// count steps
+int		count_steps(t_stack *a, t_stack *b, t_element *tmp_a, t_element *target);
+int		count_a_steps(t_stack *a, t_element* tmp_a);
+int		count_b_steps(t_stack *b, t_element *target);
+t_element *find_target_index(t_stack *b, t_element *target);
+t_dict*		step_find_min(t_dict *step_dict);
 
 #endif

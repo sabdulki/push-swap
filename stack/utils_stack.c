@@ -55,7 +55,7 @@ t_element *get_last_elem(t_stack *stack)
 	{
 		tmp2 = tmp2->next;
 	}
-	printf("the last elem of this stack is: %d\n", tmp2->data);
+	// printf("the last elem of this stack is: %d\n", tmp2->data);
 	return (tmp2);
 }
 

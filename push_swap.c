@@ -33,10 +33,12 @@ int main (int argc, char **argv)
 {
 	if (argc <= 2)
 		return (0);
-	t_stack *a; 
+	t_stack *a;
+	t_stack *a_prep; 
 	t_stack *b;
 	
-	a = preparation(argc, argv);
+	a_prep = preparation(argc, argv);
+	// a = copy_stack(a_prep);
 	// change_index(a);
 	b = make_base_for_stack();
 

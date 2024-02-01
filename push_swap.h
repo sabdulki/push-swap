@@ -23,6 +23,9 @@
 # include "./target/target.h"
 // # include "./ft_printf/ft_printf.h"
 
+t_stack *make_base_for_stack();
+t_stack*	copy_stack(t_stack *stack);
+
 // sorting
 int		min(int x, int y);
 void	sort(t_stack *a, t_stack *b);

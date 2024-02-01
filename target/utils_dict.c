@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 20:57:25 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/31 16:31:37 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:47:11 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_dict*		step_find_min(t_dict *step_dict)
 	return (min);
 }
 
-int		l_find_min(t_dict *dict)
+int		l_find_min(t_dict *dict) //, char c)
 {
 	t_dict *tmp;
 	t_dict *min;
@@ -44,8 +44,11 @@ int		l_find_min(t_dict *dict)
 		tmp = tmp->next;
 	}
 	// printf("\nthe min is: %d\n", min->b_int);
-
 	return (min->b_int);
+	// if (c == 'a')
+	// 	return (min->b_int);
+	// else if (c == 'b')
+	// 	return (min->a_int);
 }
 
 int		l_find_max(t_dict* dict)

@@ -27,7 +27,8 @@ SRC_T = target/create_dictionary.c \
 
 # SRC_CS = steps/ \ 
 
-SRCS = $(SRC_S) $(SRC_T) push_swap.c sorting.c count_steps.c make_a_move.c
+SRCS = $(SRC_S) $(SRC_T) push_swap.c sorting.c count_steps.c make_a_move.c \
+						copy_stack.c
 		
 		
 OBJS = $(SRCS:.c=.o)

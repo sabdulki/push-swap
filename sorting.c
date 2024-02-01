@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:09:57 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/31 20:07:27 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:52:11 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,27 @@ void	sort(t_stack *a, t_stack *b)
 	while(a->amount != 3)
 	{
 		printf("\n------%d new call of finding profit num ------\n", i);
-		print_elements(b);
 		moving_num = find_most_profit_num(a, b);
 		make_a_move(a, b, moving_num);
 		// main_process(a, b); DONE
-		//count steps
-		//compare steps (which number is chepest to move)
-		//make_a_move();
-		//durng the push_move a->amount =-1 
-		// a->amount =-1;
+		//count steps DONE
+		//compare steps (which number is chepest to move) DONE
+		//make_a_move(); DONE
+		//durng the push_move a->amount =-1 DONE
 		i++;
 	}
-	// sort_three(a);
-	
-	
+	moving_num = 0;
+	sort_three(a);
+	// теперь все делаю ровно наоборот.
+	// нахожу target для числе в стэке b чтобы перекинуть их в a
+	// считаю steps
+	// сраниваю steps, выбираю наименьшее кол-во
+	// передвигаю
+	// while(b->amount != 0)
+	// {
+	// 	moving_num = find_most_profit_num(b, a);
+	// 	make_a_move(b, a, moving_num);
+	// }
 }
 
 /*

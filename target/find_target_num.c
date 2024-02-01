@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:51:56 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/31 20:29:43 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:31:43 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,12 @@ int		find_target(t_dict* head_dict, t_stack *a, t_stack *b) // находит ta
 		i++;
 		dict_node = dict_node->next;
 	}
-	if (i == pos) //all values of dict are posistive
+	if (i == pos)
 		target = l_find_min(head_dict);
-	else if (i == neg) // || (i != neg && i != pos)) // all values of dict are negative
-		target = l_find_max(head_dict); // values are both positive and negative
-	else if (i != neg && i != pos)
-	{
-		// find the min value in pos values
-		printf("\nl_find_pos!!\n");
-		target = l_find_min_pos(head_dict);
-	}
+	else if (i == neg)
+		target = l_find_max(head_dict);
+	else if (i != neg && i != pos) // find the min value in pos values
+		target = l_find_min_pos(head_dict, pos); //, neg);
 	// free_dict(head_dict);
 	return (target);
 }
@@ -101,15 +97,17 @@ int	target_for_max_min(t_dict *head_dict, t_stack *a, t_stack *b)
 {
 	t_element* min_in_a;
 	t_element* max_in_a;
-	// t_element* min_in_b;
+	t_element* min_in_b;
 	t_element* max_in_b;
 
 	min_in_a = find_min(a);
 	max_in_a = find_max(a);
-	// min_in_b = find_min(b);
+	min_in_b = find_min(b);
 	max_in_b = find_max(b);
-	if (head_dict->a_int == min_in_a->data)
+	if (head_dict->a_int == min_in_a->data && min_in_a->data < min_in_b->data)
 		return (max_in_b->data);
+	else if (head_dict->a_int == min_in_a->data && min_in_a->data > min_in_b->data)
+		return (min_in_b->data);
 	else if (head_dict->a_int == max_in_a->data)
 		return (max_in_b->data);
 	return (0);
@@ -132,49 +130,22 @@ t_dict*	find_value(int num_a, t_stack *b, t_dict *head_dict) // находит �
 		tmp_b = tmp_b->next;
 	}
 	// print_list(head_dict);
-	return (head_dict); // или все же dict_node??
+	return (head_dict);
 }
 
-int		l_find_min_pos(t_dict *dict)
+int		l_find_min_pos(t_dict *head_dict, int pos)
 {
-	int min_positive_value;
-	t_dict *tmp;
+	t_dict *dict;
 
-	tmp = dict;
-	min_positive_value = -1; // Инициализируем минимальное положительное значение отрицательным числом
-    while (tmp != NULL) 
-	{
-        if (tmp->value > 0 && (min_positive_value == -1 || tmp->value < min_positive_value)) 
-		{
-            min_positive_value = tmp->value;
-        }
-        tmp = tmp->next;
-    }
-
-    return (min_positive_value);
-
+	dict = head_dict;
+	if (pos == 1)
+		return (l_find_max(head_dict));
 	
-	// t_dict *tmp;
-	// t_dict *min;
-
-	// tmp = dict;
-	// // min = dict->next;
-	// min = dict;
-	// while(tmp)
-	// {
-	// 	if (tmp->value < 0) //|| min->value < 0)
-	// 	{
-	// 		tmp = tmp->next;
-	// 		continue ;
-	// 	}
-	// 	else if (tmp->value < min->value) //  && tmp->value >= 0 && min->value >= 0)
-	// 	{	
-	// 		min = tmp;
-			
-	// 	}
-	// 	tmp = tmp->next;
-	// }
-	// // printf("\nthe min is: %d\n", min->b_int);
-
-	// return (min->b_int);
+	while(dict)
+	{
+		if (dict->value < 0)
+			dict->value = 2147483647;
+		dict = dict->next;
+	}
+	return (l_find_min(head_dict));
 }

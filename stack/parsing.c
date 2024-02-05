@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:14:34 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/31 18:42:37 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:18:51 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,32 +65,35 @@ void check_dups(t_stack *stack)
 
 void parsing(int argc, char **argv, t_stack *stack)
 {
-	char *str;
-	char **future_stack;
-	int arg;
-	int  num;
-	int index;
+	char	*str;
+	char	**future_stack;
+	int		counter;
+	int		num_count;
+	int 	num;
+	// int index;
 	
-	index = 1;
+	// index = 1;
 	str = ft_ex_join(argc, argv, " "); // deleted the name of programm from arguments
 	// protection
 	check_if_int(str);
 	future_stack = ft_split(str, ' ');
 	// protection
+	free(str);
 	check_if_in_int(future_stack);
-
-	arg = arr_strlen(future_stack);
-	printf("\narg: %d\n", arg);
-	while(arg >= 0 && future_stack[arg])
+	// arg = arr_strlen(future_stack);
+	// printf("\narg: %d\n", arg);
+	counter = 0;
+	num_count = arr_strlen(future_stack);
+	while(future_stack[counter])
 	{
-		num = ft_atoi(future_stack[arg]);
-
+		num = ft_atoi(future_stack[num_count - counter]);
 		// index = push(stack, num, index); 
-		stack->amount = push(stack, num); //, index); //, stack->amount);
-		if (stack->amount == 0)
+		//, index); //, stack->amount);
+		if (push(stack, num))
 			ft_error();
-		// print_elements(stack);
-		arg--;
+		counter++;
 	}
+	// print_elements(stack);
+	free_split(future_stack);
 	check_dups(stack);
 }

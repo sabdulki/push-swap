@@ -75,12 +75,13 @@ int		is_ascending(t_stack *stack)
 	min = stack->top;
 	while(tmp)
 	{
+		
 		if (tmp->data < min->data)
 		{
 			return (false); // 0
 		}
 		tmp = tmp->next;
 	}
-	printf("\nthe elements of this stack are in ascending oreder!\n");
+	// printf("\nthe elements of this stack are in ascending oreder!\n");
 	return (true); // 1
 }

@@ -6,20 +6,20 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:54:43 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/31 19:49:58 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:58:04 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-int		determination(t_stack *a)
+int		sort_2_3(t_stack *a)
 {
 	if (a->amount == 2)
 		sort_two(a);
 	else if (a->amount == 3)
 		sort_three(a);
-	else if (a->amount > 3)
-		printf("\tready to sort. stack has more tham 3 numbers\n");
+	// else if (a->amount > 3)
+	// 	printf("\tready to sort. stack has more tham 3 numbers\n");
 	return (0);
 }
 
@@ -29,7 +29,7 @@ int	push(t_stack* stack, int num) //, int index)
 
 	newNum = malloc(sizeof(t_element));
 	if (!newNum)
-		return (0);
+		return (1);
 	newNum->data = num;
 	// if (!stack->top)
 	// 	newNum->index = 0;
@@ -48,17 +48,18 @@ int	push(t_stack* stack, int num) //, int index)
 	
 	// printf("the new top is: %d\n", stack->top->data);
 	change_index(stack);
-	return (stack->amount);
+	return (0);
 }
 
 int	pop(t_stack* stack)
 {
+	t_element *tmp;
+	
 	if (is_empty(stack))
 	{
-		printf("you can't pop an element 'cause the stack is empty\n");
+		// printf("you can't pop an element 'cause the stack is empty\n");
 		return (0);
 	}
-	t_element *tmp;
 	tmp = stack->top;
 	stack->top = stack->top->next;
 	if (stack->top)
@@ -67,33 +68,37 @@ int	pop(t_stack* stack)
 	change_index (stack); //->top);
 	free(tmp);
 	
-	if (stack->top)
-	{
-		printf("new top after popping is: %d\n", stack->top->data);
-		printf("amount: %d\n", stack->amount);
-	}
+	// if (stack->top)
+	// {
+	// 	// printf("new top after popping is: %d\n", stack->top->data);
+	// 	// printf("amount: %d\n", stack->amount);
+	// }
 	return (0);
 }
 
 int	peek(t_stack * stack)
 {
-	printf("the topmost elem is %d\n", stack->top->data);
+	// printf("the topmost elem is %d\n", stack->top->data);
 	return (stack->top->data);
 }
 
 int destroy(t_stack *stack)
 {
 	if (!stack)
+	{
+		printf("there are no stack. return 0.\n");
 		return (0);
+	}
 	if (is_empty(stack))
 	{
-		printf("you can't destroy the stack 'cause it is empty\n");
+		// printf("you can't destroy the stack 'cause it is empty\n");
+		free(stack);
 		return (0);
 	}
 	while(stack->top)
 		pop(stack);
 	free(stack);
 	
-	printf("the stack has been sucsessfully destroyed!");
+	// printf("the stack has been sucsessfully destroyed!");
 	return (0);
 }

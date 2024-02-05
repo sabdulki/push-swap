@@ -34,25 +34,27 @@ int main (int argc, char **argv)
 	if (argc <= 2)
 		return (0);
 	t_stack *a;
-	t_stack *a_prep; 
 	t_stack *b;
 	
-	a_prep = preparation(argc, argv);
-	// a = copy_stack(a_prep);
-	// change_index(a);
-	b = make_base_for_stack();
-
-	// is_descending(a);
-
+	a = preparation(argc, argv);
+	// print_elements(a);
 	if (is_ascending(a))
 		return (0);
+	printf("sort\n");
+	b = make_base_for_stack();
 	
-	print_elem_index(a);
-	printf("\n\t----- start of sorting -----\t\n");
-	determination(a);
-	sort(a, b);
+	// printf("\n\t----- start of sorting -----\t\n");
+	sort_2_3(a);
 
+	if (is_ascending(a))
+		finish(a, b);
+	sort(a, b);
+	if (is_ascending(a))
+		finish(a, b);
+	
+	// print_elements(a);
 	// rev_rotate_move(a);
+	// print_elements(a);
 	// rotate_move(a);
 	// get_last_elem(a);
 	// pop(a);

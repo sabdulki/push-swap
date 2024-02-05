@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 21:21:15 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/01/30 20:35:36 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:09:05 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ft_error(void);
 void	print_elements(t_stack* stack);
 void	change_index(t_stack *stack);
 void	print_elem_index(t_stack* stack);
+int		finish(t_stack* a, t_stack* b);
 
 // methods
 int		push(t_stack* stack, int num); //, int index);
@@ -62,16 +63,18 @@ t_element *get_last_elem(t_stack *stack);
 t_element* find_min(t_stack* stack);
 t_element* find_max(t_stack *stack);
 
-int		determination(t_stack *a);
+int		sort_2_3(t_stack *a);
 void	sort_two(t_stack *a);
 void	sort_three(t_stack *a);
+void	sort_three_rev(t_stack* b);
 
 int		is_ascending(t_stack *a);
+int		is_decreasing(t_stack *stack);
 
 // operations
-void	swap_move(t_stack *stack);
-void	push_move(t_stack *a, t_stack *b);
-void	rotate_move(t_stack *stack);
-void	rev_rotate_move(t_stack *stack);
+void	swap_move(t_stack *stack, char flag);
+void	push_move(t_stack *a, t_stack *b, char flag);
+void	rotate_move(t_stack *stack, char flag);
+void	rev_rotate_move(t_stack *stack, char flag);
 
 #endif

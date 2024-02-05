@@ -34,7 +34,7 @@ SRCS = $(SRC_S) $(SRC_T) push_swap.c sorting.c count_steps.c make_a_move.c \
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 # LIBFT = ./libft-42/libft.a
 NAME = push_swap
 

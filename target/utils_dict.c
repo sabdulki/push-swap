@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 20:57:25 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/01 17:47:11 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:19:38 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ t_dict*		step_find_min(t_dict *step_dict)
 	t_dict *min;
 
 	tmp = step_dict;
-	min = step_dict->next;
+	min = step_dict; //->next;
 	while(tmp)
 	{
 		if (tmp->value < min->value)
 			min = tmp;
 		tmp = tmp->next;
 	}
-	// printf("\nthe min is: %d\n", min->b_int);
+	// printf("\nthe min steps: %d\n", min->value);
 
 	return (min);
 }
@@ -79,13 +79,14 @@ void free_dict(t_dict* head)
         free(current);
         current = next;
     }
+	//free(next) ??
 }
 
 void print_list(t_dict* head) 
 {
     t_dict* current = head;
     while (current != NULL) {
-		printf("\n\t'%d' steps: %d -> ", current->a_int, current->value);
+		// printf("\n\t'%d' steps: %d -> ", current->a_int, current->value);
         // printf("\t%d-%d = %d -> ", current->a_int, current->b_int, current->value);
         current = current->next;
     }

@@ -35,13 +35,13 @@ void print_elements(t_stack* stack)
 		printf("there are no elements in the stack 'cause it is empty!\n");
 		return ;
 	}
-	printf("the elements of stack are:\n");
+	// printf("the elements of stack are:\n");
 	t_element *head;
 	
 	head = stack->top;
 	while(head)
 	{
-		printf("%d\n", head->data);
+		printf("%d ", head->data);
 		head = head->next;
 	}
 }
@@ -80,11 +80,22 @@ void	change_index(t_stack* stack)
 	// print_elem_index(stack);
 }
 
-/*
-1  -> x
-2	1	
-3	2
-4	3
-5	4
+int		finish(t_stack* a, t_stack* b)
+{
+	print_elements(a);
+	if (is_empty(b))
+	{
+		destroy(a);
+		destroy(b);
+	}
+	else
+		printf("stack 'b' isn't empty\n");
+	exit(0);
+}
 
-*/
+void freeStack(t_stack* stack) {
+    while (!is_empty(stack)) {
+        pop(stack);
+    }
+    free(stack);
+}

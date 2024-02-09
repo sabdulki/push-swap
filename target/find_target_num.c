@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:51:56 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/05 15:50:31 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:50:13 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_dict *	find_most_profit_num (t_stack *a, t_stack *b, char flag)
 		// 	target->data = find_target_to_b(dict);
 		step_dict->a_int = tmp_a->data;
 		step_dict->b_int = target->data;
-		// printf("\ntarget for '%d' number of 'a' stack is: %d\n", tmp_a->data, target->data);
+		// printf("\ntarget for '%d' number of '%c' stack is: %d\n", tmp_a->data, flag, target->data);
 		// я нашла число, к которому пойдет первое число из стака а.
 		// теперь мне надо посчитать количество шагов для первого числа из стака а до его таргета.
 		steps = count_steps(a, b, tmp_a, target);
@@ -54,7 +54,8 @@ t_dict *	find_most_profit_num (t_stack *a, t_stack *b, char flag)
 	//теперь беру step_h_dict и ищу в нем самый маленький value. Возвращаю чилсо int_a и 
 	// отдельной функцией совершаю перемещение (move).
 	moving_num = step_find_min(step_h_dict);
-	// printf("the moving num is: %d\n", moving_num->a_int);
+	printf("\n	the moving num is: %d\n", moving_num->a_int);
+	printf("	needed steps: %d\n", moving_num->value);
 	free_dict(dict);
 	// free_dict(step_h_dict);
 	free(target);

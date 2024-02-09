@@ -28,13 +28,13 @@ SRC_T = target/create_dictionary.c \
 # SRC_CS = steps/ \ 
 
 SRCS = $(SRC_S) $(SRC_T) push_swap.c sorting.c count_steps.c make_a_move.c \
-						copy_stack.c
+						
 		
 		
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 # LIBFT = ./libft-42/libft.a
 NAME = push_swap
 

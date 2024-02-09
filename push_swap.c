@@ -40,7 +40,6 @@ int main (int argc, char **argv)
 	// print_elements(a);
 	if (is_ascending(a))
 		return (0);
-	printf("sort\n");
 	b = make_base_for_stack();
 	
 	// printf("\n\t----- start of sorting -----\t\n");
@@ -52,26 +51,5 @@ int main (int argc, char **argv)
 	if (is_ascending(a))
 		finish(a, b);
 	
-	// print_elements(a);
-	// rev_rotate_move(a);
-	// print_elements(a);
-	// rotate_move(a);
-	// get_last_elem(a);
-	// pop(a);
-	// destroy(a);
-
-
-	// find_max(a);
-	// find_min(a);
-
-	// swap_move(a);
-	// push_move(a, b);
-	
-
-	
-	// printf("amount a: %d\n", a->amount);
-	// printf("amount b: %d\n", b->amount);
-	
-	// for_two(a);
-	// printf("min: %d\n", min->data);
+	return (0);
 }

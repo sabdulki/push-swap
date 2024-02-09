@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:07:22 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/05 13:33:51 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:09:46 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ void	sort_two(t_stack *a) // sa, sb
 	// print_elements(a);
 }
 
-void	sort_three(t_stack *a)
+void	sort_three(t_stack *a, char flag)
 {
+	printf("in-sort-3\n");
 	t_element *max;
 	t_element *min;
 	t_element *last;
@@ -41,17 +42,23 @@ void	sort_three(t_stack *a)
 	min = find_min(a);
 
 	if (max->data == last->data && min->data != a->top->data)
-		swap_move(a, 'a');
+		swap_move(a, flag);
 	else if (a->top->data == max->data && min->data == last->data)
 	{
-		rotate_move(a, 'a');
-		swap_move(a, 'a');
+		rotate_move(a, flag);
+		swap_move(a, flag);
 	}
 	else if (max->data == a->top->data)
-		rotate_move(a, 'a');
+		rotate_move(a, flag);
 	else if (min->data == last->data)
-		rev_rotate_move(a, 'a');
-	// printf("alg for 3 elem done\n");
+		rev_rotate_move(a, flag);
+	else if (min->data == a->top->data && max->data != last->data)
+	{
+		rotate_move(a, flag);
+		swap_move(a, flag);
+		rev_rotate_move(a, flag);
+	}
+	printf("alg for 3 elem done\n");
 }
 
 void	sort_three_rev(t_stack* b)

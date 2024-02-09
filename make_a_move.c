@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:23:54 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/05 16:48:19 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:49:13 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,16 @@ void	make_a_move(t_stack *a, t_stack *b, t_dict *moving_num, char flag)
 	// t_element* min_b;
 	
 	// printf("a: %d, b: %d, value: %d\n", moving_num->a_int, moving_num->b_int, moving_num->value);
-	move_in_a(a, moving_num, flag); //push_move anyway
-		// print_elements(a);
+	// printf("in-make-a-move\n");
+	move_in_a(a, moving_num, flag);
+		printf("'B': ");
+		print_elements(a);
 	move_in_b(b, moving_num, flag);
-		// print_elements(b);
+		printf("\n'A' after SORTing: ");
+		print_elements(b);
 	push_move(a, b, flag);
+		printf("\n'A' after PUSHing: ");
+		print_elements(b);
 		// print_elements(a);
 		// print_elements(b);
 	// min_b = find_min(b);
@@ -35,9 +40,14 @@ void	make_a_move(t_stack *a, t_stack *b, t_dict *moving_num, char flag)
 
 void	move_in_a(t_stack* a, t_dict *moving_num, char flag)
 {
+	printf("in-move-a\n");
 	int median;
 	int				a_move_data;
 	t_element* a_move;
+
+	// printf("%c->amount: %d\n", flag, a->amount);
+	if (a->amount == 1)	
+			return ;
 
 	median = a->amount / 2;
 	a_move = find_position_in_a(a, moving_num);
@@ -66,13 +76,19 @@ void	move_in_a(t_stack* a, t_dict *moving_num, char flag)
 
 void	move_in_b(t_stack* b,  t_dict *moving_num, char flag)
 {
+	printf("\n'A': ");
+	print_elements(b);
 	t_element*		b_move;
 	int				b_move_data;
 	int				median;
 
+	// printf("%c->amount: %d\n", flag, b->amount);
+	if (b->amount == 1)
+		return ;
+
 	median = b->amount / 2;
 	b_move = find_position_in_b(b, moving_num);
-
+	
 	if (flag == 'a')
 	{
 		if (moving_num->a_int < find_min(b)->data && find_min(b)->data  == get_last_elem(b)->data)
@@ -90,6 +106,10 @@ void	move_in_b(t_stack* b,  t_dict *moving_num, char flag)
 	// 	//move items inside if it's needed
 	// 	return ;
 	// }
+	if (flag == 'a')
+		flag = 'b';
+	else if (flag == 'b')
+		flag = 'a';
 	if (b_move->data == peek(b))
 	{
 		// printf("here-in-b-peek\n");
@@ -100,7 +120,7 @@ void	move_in_b(t_stack* b,  t_dict *moving_num, char flag)
 		b_move_data = b_move->data;
 		while(b_move_data != peek(b))
 		{
-		 	rotate_move(b, 'b');
+		 	rotate_move(b, flag);
 		}
 	}
 	else if (b_move->index > median)
@@ -109,7 +129,8 @@ void	move_in_b(t_stack* b,  t_dict *moving_num, char flag)
 		while(b_move_data != peek(b))
 		{
 			// printf("b_move: %d\n", b_move->data);
-		 	rev_rotate_move(b, 'b');
+			// printf(" move in b rev rotate ");
+		 	rev_rotate_move(b, flag);
 		}
 	}
 	

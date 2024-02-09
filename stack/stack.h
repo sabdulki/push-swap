@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 21:21:15 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/05 15:09:05 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:08:41 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_element* find_max(t_stack *stack);
 
 int		sort_2_3(t_stack *a);
 void	sort_two(t_stack *a);
-void	sort_three(t_stack *a);
+void	sort_three(t_stack *a, char flag);
 void	sort_three_rev(t_stack* b);
 
 int		is_ascending(t_stack *a);

@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:51:56 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/09 18:50:13 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:53:34 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,79 +14,68 @@
 
 t_dict *	find_most_profit_num (t_stack *a, t_stack *b, char flag) 
 {
-	t_element *tmp_a;
-	// t_element *tmp_b;
-	t_dict *step_dict;
-	t_dict *step_h_dict;
-	t_dict *head_dict;
-	t_dict *dict;
-	t_element *target;
-	int steps;
-	t_dict*	moving_num;
+	t_element	*tmp_a;
+	t_element	*target;
+	t_dict		*step_dict;
+	t_dict		*step_h_dict;
+	t_dict		*dict;
 	
 	target = malloc(sizeof(t_element));
+	if (!target)
+		ft_error();
 	tmp_a = a->top;
-	// tmp_b = b->top;
-
-	head_dict = create_dictinary(b);
 	step_h_dict = create_dictinary(a);
 	step_dict = step_h_dict;
 	while(tmp_a)
 	{
-		dict = find_value(tmp_a->data, b, head_dict);
-		// if (flag == 'a')
-		target->data = find_target(dict, flag); //, a, b);
-		// else if (flag == 'b')
-		// 	target->data = find_target_to_b(dict);
+		dict = find_value(tmp_a->data, b, create_dictinary(b));
+		target->data = define_target(dict, flag, b, tmp_a);
 		step_dict->a_int = tmp_a->data;
 		step_dict->b_int = target->data;
-		// printf("\ntarget for '%d' number of '%c' stack is: %d\n", tmp_a->data, flag, target->data);
-		// я нашла число, к которому пойдет первое число из стака а.
-		// теперь мне надо посчитать количество шагов для первого числа из стака а до его таргета.
-		steps = count_steps(a, b, tmp_a, target);
-		step_dict->value = steps;
-		// printf("have to accomplish  %d  steps to move num\n", steps);
+		step_dict->value = count_steps(a, b, tmp_a, target);
 		tmp_a = tmp_a->next;
 		step_dict = step_dict->next;
-		
 	}
-	// print_list(step_h_dict);
-	//теперь беру step_h_dict и ищу в нем самый маленький value. Возвращаю чилсо int_a и 
-	// отдельной функцией совершаю перемещение (move).
-	moving_num = step_find_min(step_h_dict);
-	printf("\n	the moving num is: %d\n", moving_num->a_int);
-	printf("	needed steps: %d\n", moving_num->value);
 	free_dict(dict);
-	// free_dict(step_h_dict);
 	free(target);
-	return (moving_num);
+	return (step_find_min(step_h_dict));
 }
 
-int		find_target(t_dict* head_dict, char flag) //, t_stack *a, t_stack *b) // находит target-числло из b  для ОДНОГО числа из стака а
+int		define_target(t_dict* head_dict, char flag, t_stack *b, t_element* a_move) // находит target-числло из b  для ОДНОГО числа из стака а
 {
 	t_dict *dict_node;
-	int target;
 	int pos;
 	int neg;
-	int i;
+	int	target;
 	
 	dict_node = head_dict;
-	target = 0;
 	pos = 0;
 	neg = 0;
-	i = 0;
-	// target = target_for_max_min(dict_node, a, b);
-	// if (target != 0) // NOT SAFE!!!!
-	// {
-	// 	// free_dict(head_dict);
-	// 	return (target);
-	// }
+	if ((a_move->data > find_max(b)->data || a_move->data < find_min(b)->data))
+		return (find_min(b)->data);
 	while(dict_node)
 	{
 		if (dict_node->value >= 0)
 			pos++;
 		else if (dict_node->value < 0)
 			neg++;
+		dict_node = dict_node->next;
+	}
+	target = find_target(head_dict, pos, neg, flag);
+	return (target);
+}
+
+int		find_target(t_dict* head_dict, int pos, int neg, char flag)
+{
+	t_dict	*dict_node;
+	int		target;
+	int		i;
+
+	i = 0;
+	target = 0;
+	dict_node = head_dict;
+	while(dict_node)
+	{
 		i++;
 		dict_node = dict_node->next;
 	}
@@ -100,68 +89,9 @@ int		find_target(t_dict* head_dict, char flag) //, t_stack *a, t_stack *b) // н
 			target = l_find_min_pos(head_dict, pos);
 		else if (flag == 'b')
 			target = l_find_max_neg(head_dict, neg);		
-	} 
+	}
 	return (target);
 }
-
-// int		find_target_to_a(t_dict* head_dict) //, t_stack *a, t_stack *b) // находит target-числло из b  для ОДНОГО числа из стака а
-// {
-// 	t_dict *dict_node;
-// 	int target;
-// 	int pos;
-// 	int neg;
-// 	int i;
-	
-// 	dict_node = head_dict;
-// 	target = 0;
-// 	pos = 0;
-// 	neg = 0;
-// 	i = 0;
-// 	// target = target_for_max_min(dict_node, a, b);
-// 	// if (target != 0) // NOT SAFE!!!!
-// 	// {
-// 	// 	// free_dict(head_dict);
-// 	// 	return (target);
-// 	// }
-// 	while(dict_node)
-// 	{
-// 		if (dict_node->value >= 0)
-// 			pos++;
-// 		else if (dict_node->value < 0)
-// 			neg++;
-// 		i++;
-// 		dict_node = dict_node->next;
-// 	}
-// 	if (i == pos)
-// 		target = l_find_min(head_dict);
-// 	else if (i == neg)
-// 		target = l_find_max(head_dict);
-// 	else if (i != neg && i != pos) // find the min value in pos values
-// 		target = l_find_min_pos(head_dict, pos); //, neg);
-// 	return (target);
-// }
-
-// int	target_for_max_min(t_dict *head_dict, t_stack *a, t_stack *b)
-// {
-// 	t_element* min_in_a;
-// 	t_element* max_in_a;
-// 	t_element* min_in_b;
-// 	t_element* max_in_b;
-
-// 	min_in_a = find_min(a);
-// 	max_in_a = find_max(a);
-// 	min_in_b = find_min(b);
-// 	max_in_b = find_max(b);
-// 	if (head_dict->a_int == min_in_a->data && (min_in_a->data < 0 && min_in_b->data < 0) && min_in_a->data < min_in_b->data)
-// 		return (min_in_b->data);
-// 	else if (head_dict->a_int == min_in_a->data && min_in_a->data < min_in_b->data)
-// 		return (max_in_b->data);
-// 	else if (head_dict->a_int == min_in_a->data && min_in_a->data > min_in_b->data)
-// 		return (min_in_b->data);
-// 	else if (head_dict->a_int == max_in_a->data)
-// 		return (max_in_b->data);
-// 	return (0);
-// }
 
 t_dict*	find_value(int num_a, t_stack *b, t_dict *head_dict) // находит все value для ОДНОГО числа из стака а
 {
@@ -179,7 +109,6 @@ t_dict*	find_value(int num_a, t_stack *b, t_dict *head_dict) // находит �
 		dict_node = dict_node->next;
 		tmp_b = tmp_b->next;
 	}
-	// print_list(head_dict);
 	return (head_dict);
 }
 
@@ -207,7 +136,6 @@ int		l_find_max_neg(t_dict *head_dict, int neg)
 	dict = head_dict;
 	if (neg == 1)
 		return (l_find_min(head_dict));
-	
 	while(dict)
 	{
 		if (dict->value > 0)

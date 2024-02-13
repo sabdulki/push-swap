@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 21:21:15 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/09 16:08:41 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/13 17:42:14 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,14 @@ void	check_dups(t_stack *stack);
 char	*ft_ex_join(int size, char **strs, char *sep);
 
 // utils
-void	print_args(char **argv);
 void	ft_error(void);
 void	print_elements(t_stack* stack);
 void	change_index(t_stack *stack);
 void	print_elem_index(t_stack* stack);
-int		finish(t_stack* a, t_stack* b);
+void	finish(t_stack* a, t_stack* b);
 
 // methods
-int		push(t_stack* stack, int num); //, int index);
+int		push(t_stack* stack, int num);
 int		pop(t_stack* stack);
 int		peek(t_stack * stack);
 int		destroy(t_stack *stack);
@@ -58,8 +57,6 @@ bool	is_empty(t_stack* stack);
 t_element *get_last_elem(t_stack *stack);
 
 // build
-// t_stac* preparation(int argc, char **argv);
-// t_stack* make_base_for_stack();
 t_element* find_min(t_stack* stack);
 t_element* find_max(t_stack *stack);
 

@@ -1,44 +1,81 @@
 #!/bin/bash
 
-# FILEPATH: /home/tlenovo/projects/study/42_push_swap/test.sh
-GREEN='\033[0;32m'
+PRINT_INPUT=false
+PRINT_OUTPUT=false
+SHOW_NUMBERS=false
+
+CHECKER_PATH="./checker_Mac"
+PUSHSWAP_PATH="./push_swap"
+
 RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-PRINT_IO=true
+echo "\n${BLUE}\t\tERROR TESTS${NC}\n"
 
-# Loop through all files in the ./tests folder that contain the word "test"
-for file in ./tests/*test*; do
-	# Extract the numbers from the file
+echo "### Errors should be printed into ${RED}standart error${NC} fd ###\n"
+
+for file in ./tests/*testerror*; do
+	numbers=$(cat "$file")
+	result=$($PUSHSWAP_PATH $numbers 2>&1)
+	
+	if [ $PRINT_INPUT = true ]; then
+		echo "Input\t: $(echo "$numbers" | tr '\n' ' ')"
+	fi
+	if [ $PRINT_OUTPUT = true ]; then
+		echo "Output\t: $(echo "$result" | tr '\n' ' ')"
+	fi
+	
+	case $result in 
+		*Error*) printf "%30s : ${GREEN}OK${NC}\n" $file;; 
+		*) 	printf "%30s : ${RED}KO${NC}\n" $file;; 
+	esac
+done
+
+echo "\n${BLUE}\t\tIDENTITY TESTS${NC}\n"
+
+for file in ./tests/*testiden*; do
+	numbers=$(cat "$file")
+	result=$($PUSHSWAP_PATH $numbers | wc -m)
+
+	if [ $PRINT_INPUT = true ]; then
+		echo "Input\t: $(echo "$numbers" | tr '\n' ' ')"
+	fi
+	if [ $PRINT_OUTPUT = true ]; then
+		echo "Output\t: $(echo "$result" | tr '\n' ' ')"
+	fi
+	
+	if [ $result -eq 0 ]; then
+		printf "%30s : ${GREEN}OK${NC}\n" $file
+	else
+		printf "%30s : ${RED}KO${NC}\n" $file
+	fi
+done
+
+echo "\n${BLUE}\t\tMAIN TESTS${NC}\n"
+
+for file in ./tests/*test_*; do
 	numbers=$(cat "$file")
 
-	# Execute the program "pushswap" with the numbers as arguments
-	result=$(./pushswap $numbers)
-	if [ $PRINT_IO = true ]; then
+	result=$($PUSHSWAP_PATH $numbers)
+	
+	count_of_operations=$(echo $result |  tr ' ' '\n' | wc -l)
+	cheker_result=$($PUSHSWAP_PATH $numbers | $CHECKER_PATH $numbers)
+
+	if [ $SHOW_NUMBERS = true ]; then
+		result=$(echo "$result" | tr -cs '[:digit:]' ' ' | tr -s ' ')
+	fi
+
+	case $cheker_result 
+		in *OK*) printf "%24s : ${GREEN} OK ${NC} %d\n" $file $count_of_operations;; 
+		*)		 printf "%24s : ${RED} KO ${NC} %d\n" $file $count_of_operations;; 
+	esac
+
+	if [ $PRINT_INPUT = true ]; then
 		echo "Input\t: $(echo "$numbers" | tr '\n' ' ')"
-		echo "Output\t: $result"
 	fi
-	# Check if the list of numbers is in order from min to max
-	for number in $(echo "$result" | tr ' ' '\n')
-	do
-		if [ -n $prev_number ]; then
-			prev_number=$number
-			continue 
-		fi
-		# Check if the current number is greater than the previous number
-		if [ $number -lt $prev_number ]; then
-			not_greater=$number
-			break
-		fi
-
-		# Set the current number as the previous number for the next iteration
-		prev_number=$number
-	done
-
-	if [ -n $not_greater ]; then 
-		echo "$file:\t\t ${GREEN}OK${NC}"
-	else
-		echo "$file:\t\t ${RED}KO${NC}"
+	if [ $PRINT_OUTPUT = true ]; then
+		echo "Output\t: $(echo "$result" | tr '\n' ' ')"
 	fi
-
 done

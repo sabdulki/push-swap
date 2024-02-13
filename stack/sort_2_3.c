@@ -6,13 +6,13 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:07:22 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/09 16:09:46 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/13 17:41:58 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-void	sort_two(t_stack *a) // sa, sb
+void	sort_two(t_stack *a)
 {
 	int tmp;
 	t_element *min;
@@ -23,16 +23,13 @@ void	sort_two(t_stack *a) // sa, sb
 		tmp = a->top->data;
 		a->top->data = min->data;
 		min->data = tmp;
-		// printf("--- sa ---\n");
+		printf("sa\n");
 	}
-	// else
-	// 	printf("sa didn't need\n");
-	// print_elements(a);
+	return ;
 }
 
 void	sort_three(t_stack *a, char flag)
 {
-	printf("in-sort-3\n");
 	t_element *max;
 	t_element *min;
 	t_element *last;
@@ -58,7 +55,7 @@ void	sort_three(t_stack *a, char flag)
 		swap_move(a, flag);
 		rev_rotate_move(a, flag);
 	}
-	printf("alg for 3 elem done\n");
+	return ;
 }
 
 void	sort_three_rev(t_stack* b)
@@ -81,7 +78,6 @@ void	sort_three_rev(t_stack* b)
 	else if (last->data == max->data && b->top->data == min->data)
 	{
 		swap_move(b, 'b');
-		// print_elements(b);
 		rev_rotate_move(b, 'b');
 	}
 	else if (max->data == b->top->data && min->data != last->data)
@@ -93,7 +89,5 @@ void	sort_three_rev(t_stack* b)
 		swap_move(b, 'b');
 	else //if (min->data == b->top->data)
 		rotate_move(b, 'b');
-	// print_elements(b);
-	// printf("alg for 3 decreasing done\n");
 	return ;
 }

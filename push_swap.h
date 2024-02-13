@@ -38,6 +38,7 @@ void	move_in_a(t_stack* a, t_dict *moving_num, char flag);
 t_element* find_position_in_a(t_stack* a, t_dict *moving_num);
 t_element* find_position_in_b(t_stack* b, t_dict *moving_num);
 void	move_in_b(t_stack* b,  t_dict *moving_num, char flag);
+void	target_in_b_is_top(t_stack *b, t_element* b_move, char flag);
 
 void	check(t_stack* a);
 #endif

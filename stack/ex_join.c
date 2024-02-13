@@ -95,17 +95,3 @@ char	*ft_ex_join(int size, char **strs, char *sep)
 	make_an_array(size, strs, sep, str);
 	return (str);
 }
-
-#include <stdio.h>
-#include <string.h>
-// int main()
-// {
-// 	int size;
-// 	char *sep;
-
-// 	size = 4;
-// 	char *strs[] = {"2123", "cat", "dog", "meowwww"}; //, "fine", " cat"};
-// 	sep = "/|\\";
-// 	printf("%s\n", ft_ex_join(size, strs, sep));
-// 	// printf("%d\n", strjoin(size, strs, sep));
-// }

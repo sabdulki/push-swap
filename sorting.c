@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:09:57 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/13 18:47:34 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:06:08 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,21 @@ int		min(int x, int y)
 	return (y);
 }
 
-void	first_pushes(t_stack *a, t_stack *b, char flag)
+int	first_pushes(t_stack *a, t_stack *b, char flag)
 {
 	int			iter_count;
 
-	iter_count = min(2, a->amount-3);
+	iter_count = min(2, a->amount - 3);
 	while(iter_count != 0)
 	{
-		push_move(a, b, flag);
+		if (push_move(a, b, flag) == 1)
+			return (1);
 		iter_count--;
 	}
-	return ;
+	return (0);
 }
 
-void	push_to_a(t_stack *a, t_stack *b, int flag)
+int	push_to_a(t_stack *a, t_stack *b, int flag)
 {
 	t_dict		*moving_num;
 	
@@ -43,38 +44,47 @@ void	push_to_a(t_stack *a, t_stack *b, int flag)
 		if (b->amount == 3)
 			sort_three_rev(b);
 		moving_num = find_most_profit_num(a, b, flag);
-		make_a_move(a, b, moving_num, flag);
+		if (!moving_num)
+			return (1);
+		if (make_a_move(a, b, moving_num, flag) == 1)
+			return (1);
 	}
 	// free(moving_num);
-	return ;
+	return (0);
 }
 
-void	push_to_b(t_stack *a, t_stack *b, int flag)
+int	push_to_b(t_stack *a, t_stack *b, int flag)
 {
 	t_dict		*moving_num;
 
 	while(b->amount != 0)
 	{
 		moving_num = find_most_profit_num(b, a, flag);
-		make_a_move(b, a, moving_num, flag);
+		if (!moving_num)
+			return (1);
+		if(make_a_move(b, a, moving_num, flag) == 1)
+			return (1);
 		if (peek(a) == find_max(a)->data)
 				rotate_move(a, 'a');
 	}
 	// free(moving_num);
-	return ;
+	return (0);
 }
 
 int	sort(t_stack *a, t_stack *b)
 {
-	t_element*	a_move;
+	t_element	*a_move;
 	char 		flag;
 
 	flag = 'a';
-	first_pushes(a, b, flag);
-	push_to_a(a, b, flag);
+	if (first_pushes(a, b, flag) == 1)
+		return (1);
+	if (push_to_a(a, b, flag) == 1)
+		return (1);
 	sort_three(a, flag);
 	flag = 'b';
-	push_to_b(a, b, flag);
+	if (push_to_b(a, b, flag) == 1)
+		return (1);
 	a_move = find_min(a);
 	while(peek(a) != find_min(a)->data)
 		target_in_b_is_top(a, a_move, 'a');

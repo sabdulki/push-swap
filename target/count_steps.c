@@ -6,13 +6,13 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 20:35:43 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/13 18:21:14 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/15 13:55:46 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "target.h"
 
-int		count_steps(t_stack *a, t_stack *b, t_element *tmp_a,  t_element *target)
+int	count_steps(t_stack *a, t_stack *b, t_element *tmp_a,  t_element *target)
 {
 	int	steps_a;
 	int	steps_b;
@@ -26,21 +26,21 @@ int		count_steps(t_stack *a, t_stack *b, t_element *tmp_a,  t_element *target)
 	return (all_steps);
 }
 
-int		count_a_steps(t_stack *a, t_element* tmp_a)
+int	count_a_steps(t_stack *a, t_element *tmp_a)
 {
 	int	steps_a;
 	int	median;
-	
+
 	steps_a = 0;
 	median = a->amount / 2;
 	if (tmp_a->index <= median)
 		steps_a = tmp_a->index - 1;
-	else if(tmp_a->index > median)
+	else if (tmp_a->index > median)
 		steps_a = a->amount - tmp_a->index + 1;
 	return (steps_a);
 }
 
-int		count_b_steps(t_stack *b, t_element *target)
+int	count_b_steps(t_stack *b, t_element *target)
 {
 	t_element	*tmp_b;
 	int			steps_b;
@@ -58,8 +58,8 @@ int		count_b_steps(t_stack *b, t_element *target)
 
 t_element	*find_target_index(t_stack *b, t_element *target)
 {
-	t_element *tmp;
-	
+	t_element* tmp;
+
 	tmp = b->top;
 	while(tmp)
 	{
@@ -68,5 +68,5 @@ t_element	*find_target_index(t_stack *b, t_element *target)
 		tmp = tmp->next;
 	}
 	printf("haven't found element with the same number. Return head of stack");
-	return(b->top);
+	return (b->top);
 }

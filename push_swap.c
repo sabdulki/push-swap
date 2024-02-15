@@ -26,28 +26,40 @@ t_stack *preparation(int argc, char **argv)
 {
 	t_stack *stack; 
 	stack = make_base_for_stack();
-	parsing(argc, argv, stack);
+	if (!stack)
+		return (NULL);
+	if (parsing(argc, argv, stack) == 1)
+		return(destroy(stack), NULL);
 	return(stack);
 }
 
 int main (int argc, char **argv)
 {
-	if (argc <= 2)
-		return (0);
 	t_stack *a;
 	t_stack *b;
 
-	a = preparation(argc, argv);
-	if (is_ascending(a))
+	if (argc <= 2)
 		return (0);
+	a = preparation(argc, argv);
+	if (a == NULL)
+		ft_error();
+	if (is_ascending(a))
+		return (finish(a, NULL), 0);
 	b = make_base_for_stack();
 	if (!b)
+	{
+		finish (a, NULL);
 		ft_error();
+	}
 	sort_2_3(a);
 	if (is_ascending(a))
-		finish(a, b);
-	sort(a, b);
+		return (finish(a, b), 0);
+	if (sort(a, b))
+	{
+		finish (a, NULL);
+		ft_error();
+	}
 	if (is_ascending(a))
-		finish(a, b);
+		return (finish(a, b), 0);
 	return (0);
 }

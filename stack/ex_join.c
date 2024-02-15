@@ -49,7 +49,7 @@ char	*make_an_array(int size, char **strs, char *sep, char *str)
 	index = 1;
 	big_str_ctn = 0;
 	chars_in_small = 0;
-	while (index < size) //strs[index] &&
+	while (index < size)
 	{
 		str[big_str_ctn] = strs[index][chars_in_small];
 		if (strs[index][chars_in_small] == '\0')

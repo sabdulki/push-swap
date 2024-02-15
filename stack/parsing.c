@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:14:34 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/13 14:17:38 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/15 15:23:14 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,92 +14,59 @@
 
 int	arr_strlen(char **arr)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(arr[i])
+	while (arr[i])
 		i++;
-	return (i-1);
+	return (i - 1);
 }
 
-void	check_if_in_int(char **arr)
+int	check_if_in_int(char **arr)
 {
-	int arg;
+	int	arg;
 
 	arg = 1;
-	while(arr[arg])
+	while (arr[arg])
 	{
 		if ((arr[arg][0] == '-' && ft_atoi(arr[arg]) >= 0) \
-		|| (arr[arg][0] != '-' && ft_atoi(arr[arg]) < 0) )
-			ft_error();
+		|| (arr[arg][0] != '-' && ft_atoi(arr[arg]) < 0))
+			return (1);
 		arg++;
 	}
-	return ;
+	return (0);
 }
 
-void	check_if_int(char *str)
+int	check_if_int(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (ft_isdigit(str[i]) == 0)
-			ft_error();
+			return (1);
 		i++;
 	}
-	return ;
+	return (0);
 }
 
-void check_dups(t_stack *stack)
+int	check_dups(t_stack *stack)
 {
-	t_element *tmp;
-	t_element *tmp2;
+	t_element	*tmp;
+	t_element	*tmp2;
 
 	tmp = stack->top;
-	while(tmp)
+	while (tmp)
 	{
 		tmp2 = tmp->next;
-		while(tmp2)
+		while (tmp2)
 		{
 			if (tmp->data == tmp2->data)
-				ft_error();
+				return (1);
 			tmp2 = tmp2->next;
 		}
 		tmp = tmp->next;
 	}
-	return ;
-}
-
-void parsing(int argc, char **argv, t_stack *stack)
-{
-	char	*str;
-	char	**future_stack;
-	int		counter;
-	int		num_count;
-	int 	num;
-	
-	str = ft_ex_join(argc, argv, " "); // deleted the name of programm from arguments
-	if (!str)
-		ft_error();
-	// protection
-	check_if_int(str);
-	future_stack = ft_split(str, ' ');
-	if (!future_stack)
-		ft_error();
-	// protection
-	free(str);
-	check_if_in_int(future_stack);
-	counter = 0;
-	num_count = arr_strlen(future_stack);
-	while(future_stack[counter])
-	{
-		num = ft_atoi(future_stack[num_count - counter]);
-		if (push(stack, num))
-			ft_error();
-		counter++;
-	}
-	free_split(future_stack);
-	check_dups(stack);
-	return ;
+	return (0);
 }

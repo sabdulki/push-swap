@@ -6,48 +6,38 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:54:43 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/13 17:39:31 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/15 15:59:36 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-int		sort_2_3(t_stack *a)
+int	push(t_stack *stack, int num)
 {
-	if (a->amount == 2)
-		sort_two(a);
-	else if (a->amount == 3)
-		sort_three(a, 'a');
-	return (0);
-}
+	t_element	*new_num;
 
-int	push(t_stack* stack, int num)
-{
-	t_element *newNum;
-
-	newNum = malloc(sizeof(t_element));
-	if (!newNum)
+	new_num = malloc(sizeof(t_element));
+	if (!new_num)
 		return (1);
-	newNum->data = num;
-	newNum->next = stack->top;
-	newNum->prev = NULL;
+	new_num->data = num;
+	new_num->next = stack->top;
+	new_num->prev = NULL;
 	if (stack->top)
-		stack->top->prev = newNum;
-    stack->top = newNum;
+		stack->top->prev = new_num;
+	stack->top = new_num;
 	stack->amount += 1;
 	change_index(stack);
 	return (0);
 }
 
-int	pop(t_stack* stack)
+int	pop(t_stack *stack)
 {
-	t_element *tmp;
-	
+	t_element	*tmp;
+
 	if (is_empty(stack))
 	{
 		// printf("you can't pop an element 'cause the stack is empty\n");
-		ft_error();
-		return (0);
+		return (1);
 	}
 	tmp = stack->top;
 	stack->top = stack->top->next;
@@ -59,12 +49,24 @@ int	pop(t_stack* stack)
 	return (0);
 }
 
-int	peek(t_stack * stack)
+int	peek(t_stack *stack)
 {
 	return (stack->top->data);
 }
 
-int destroy(t_stack *stack)
+t_element	*get_last_elem(t_stack *stack)
+{
+	t_element	*tmp2;
+
+	tmp2 = stack->top;
+	while (tmp2 && tmp2->next != NULL)
+	{
+		tmp2 = tmp2->next;
+	}
+	return (tmp2);
+}
+
+int	destroy(t_stack *stack)
 {
 	if (!stack)
 	{
@@ -77,7 +79,7 @@ int destroy(t_stack *stack)
 		free(stack);
 		return (0);
 	}
-	while(stack->top)
+	while (stack->top)
 		pop(stack);
 	free(stack);
 	return (0);

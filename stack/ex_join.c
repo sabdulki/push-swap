@@ -19,10 +19,18 @@
 int	ft_strlen(char *str)
 {
 	int	len;
+	int	space;
 
 	len = 0;
+	space = 0;
 	while (str[len] != '\0')
+	{
+		if (str[len] == ' ')
+			space++;
 		len++;
+	}
+	if (len == space)
+		return (-1);
 	return (len);
 }
 
@@ -69,6 +77,18 @@ char	*make_an_array(int size, char **strs, char *sep, char *str)
 	return (str);
 }
 
+// char	*check_size(int size)
+// {
+// 	char	*str;
+
+// 	if (size == 0)
+// 	{
+// 		str = malloc(sizeof(char) * 1);
+// 		str[0] = '\0';
+// 	}
+// 	return (str);
+// }
+
 char	*ft_ex_join(int size, char **strs, char *sep)
 {
 	char	*str;
@@ -79,15 +99,15 @@ char	*ft_ex_join(int size, char **strs, char *sep)
 	len_all = 0;
 	index = 1;
 	len_sep = 0;
+	// str = check_size(size);
 	if (size == 0)
-	{
-		str = malloc(sizeof(char) * 1);
-		str[0] = '\0';
-		return (str);
-	}
+		return (NULL);
 	while (index < size)
 	{
-		len_all += ft_strlen(strs[index]);
+		if (ft_strlen(strs[index]) > 0)
+			len_all += ft_strlen(strs[index]);
+		else
+			return (NULL);
 		index++;
 	}
 	len_sep = ft_strlen(sep) * (size - 1);

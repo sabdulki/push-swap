@@ -16,7 +16,7 @@
 // change the plases of create_memory in join, another part in another function
 // add '\0' everywhere were ands the string
 
-int	ft_strlen(char *str)
+int	ft_ex_strlen(char *str, char flag)
 {
 	int	len;
 	int	space;
@@ -29,8 +29,11 @@ int	ft_strlen(char *str)
 			space++;
 		len++;
 	}
-	if (len == space)
-		return (-1);
+	if (flag == 'a')
+	{
+		if (len == space)
+			return (-1);
+	}
 	return (len);
 }
 
@@ -77,18 +80,6 @@ char	*make_an_array(int size, char **strs, char *sep, char *str)
 	return (str);
 }
 
-// char	*check_size(int size)
-// {
-// 	char	*str;
-
-// 	if (size == 0)
-// 	{
-// 		str = malloc(sizeof(char) * 1);
-// 		str[0] = '\0';
-// 	}
-// 	return (str);
-// }
-
 char	*ft_ex_join(int size, char **strs, char *sep)
 {
 	char	*str;
@@ -99,18 +90,17 @@ char	*ft_ex_join(int size, char **strs, char *sep)
 	len_all = 0;
 	index = 1;
 	len_sep = 0;
-	// str = check_size(size);
 	if (size == 0)
 		return (NULL);
 	while (index < size)
 	{
-		if (ft_strlen(strs[index]) > 0)
-			len_all += ft_strlen(strs[index]);
+		if (ft_ex_strlen(strs[index], 'a') > 0)
+			len_all += ft_ex_strlen(strs[index], 'a');
 		else
 			return (NULL);
 		index++;
 	}
-	len_sep = ft_strlen(sep) * (size - 1);
+	len_sep = ft_ex_strlen(sep, 's') * (size - 1 -1);
 	str = malloc(sizeof(char) * (len_all + len_sep + 1));
 	make_an_array(size, strs, sep, str);
 	return (str);

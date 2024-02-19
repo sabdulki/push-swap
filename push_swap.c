@@ -12,9 +12,11 @@
 
 #include "push_swap.h"
 
-t_stack *make_base_for_stack()
+t_stack	*make_base_for_stack(void)
 {
-	t_stack *stack = malloc(sizeof(t_stack));
+	t_stack	*stack;
+
+	stack = malloc(sizeof(t_stack));
 	if (!stack)
 		return (NULL);
 	stack->top = NULL;
@@ -22,21 +24,22 @@ t_stack *make_base_for_stack()
 	return (stack);
 }
 
-t_stack *preparation(int argc, char **argv)
+t_stack	*preparation(int argc, char **argv)
 {
-	t_stack *stack; 
+	t_stack	*stack;
+
 	stack = make_base_for_stack();
 	if (!stack)
 		return (NULL);
 	if (parsing(argc, argv, stack) == 1)
-		return(destroy(stack), NULL);
-	return(stack);
+		return (destroy(stack), NULL);
+	return (stack);
 }
 
-int main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_stack *a;
-	t_stack *b;
+	t_stack	*a;
+	t_stack	*b;
 
 	if (argc <= 2)
 		return (0);

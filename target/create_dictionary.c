@@ -6,23 +6,24 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:38:01 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/15 15:54:28 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:30:35 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "target.h"
 
-t_dict* create_dictinary(t_stack *b) 
+t_dict	*create_dictinary(t_stack *b)
 {
-	t_dict* head;
-	t_dict* current;
+	t_dict	*head;
+	t_dict	*new_node;
+	t_dict	*current;
 	int		i;
-	
+
 	if (b->amount <= 0)
 		return (NULL);
 	head = NULL;
 	current = NULL;
-	head = (t_dict*)malloc(sizeof(t_dict));
+	head = (t_dict*)malloc (sizeof(t_dict));
 	if (head == NULL)
 		return (NULL);
 	i = 1;
@@ -32,14 +33,14 @@ t_dict* create_dictinary(t_stack *b)
 	current = head;
 	while (i < b->amount)
 	{
-		t_dict* newNode = (t_dict*)malloc(sizeof(t_dict));
-		if (newNode == NULL)
+		new_node = (t_dict*)malloc (sizeof(t_dict));
+		if (new_node == NULL)
 			return (NULL);
-		newNode->next = NULL;
-		newNode->a_int = 0;
-		newNode->value = 0;
-		current->next = newNode;
-		current = newNode;
+		new_node->next = NULL;
+		new_node->a_int = 0;
+		new_node->value = 0;
+		current->next = new_node;
+		current = new_node;
 		i++;
 	}
 	return (head);

@@ -6,13 +6,13 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 20:35:43 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/15 13:55:46 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:23:24 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "target.h"
 
-int	count_steps(t_stack *a, t_stack *b, t_element *tmp_a,  t_element *target)
+int	count_steps(t_stack *a, t_stack *b, t_element *tmp_a, t_element *target)
 {
 	int	steps_a;
 	int	steps_b;
@@ -58,10 +58,10 @@ int	count_b_steps(t_stack *b, t_element *target)
 
 t_element	*find_target_index(t_stack *b, t_element *target)
 {
-	t_element* tmp;
+	t_element	*tmp;
 
 	tmp = b->top;
-	while(tmp)
+	while (tmp)
 	{
 		if (tmp->data == target->data)
 			return (tmp);

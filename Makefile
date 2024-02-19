@@ -27,14 +27,17 @@ SRC_T = target/create_dictionary.c \
 		target/utils_dict.c \
 		target/count_steps.c
 
-# SRC_CS = steps/ \ 
+SRC = 	push_swap.c \
+		sorting.c \
+		make_a_move.c \
+		move_utils.c
 
-SRCS = $(SRC_S) $(SRC_T) push_swap.c sorting.c make_a_move.c move_utils.c
+SRCS = $(SRC_S) $(SRC_T) $(SRC)
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-#  -fsanitize=address
+#  -fsanitize=address -g3
 # LIBFT = ./libft-42/libft.a
 NAME = push_swap
 

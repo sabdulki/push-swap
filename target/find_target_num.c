@@ -6,31 +6,33 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:51:56 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/15 16:04:14 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:53:39 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "target.h"
 
-t_dict *	find_most_profit_num(t_stack *a, t_stack *b, char flag) 
+t_dict	*find_most_profit_num(t_stack *a, t_stack *b, char flag)
 {
 	t_element	*tmp_a;
 	t_element	*target;
 	t_dict		*step_dict;
 	t_dict		*step_h_dict;
 	t_dict		*dict;
+	t_dict		*dict_head;
 
 	target = malloc(sizeof(t_element));
 	if (!target)
 		return (NULL);
 	tmp_a = a->top;
 	step_h_dict = create_dictinary(a);
+	dict_head =  create_dictinary(b);
 	if (!step_h_dict)
 		return (NULL);
 	step_dict = step_h_dict;
 	while (tmp_a)
 	{
-		dict = find_value(tmp_a->data, b, create_dictinary(b));
+		dict = find_value(tmp_a->data, b, dict_head);
 		target->data = define_target(dict, flag, b, tmp_a);
 		step_dict->a_int = tmp_a->data;
 		step_dict->b_int = target->data;
@@ -43,7 +45,7 @@ t_dict *	find_most_profit_num(t_stack *a, t_stack *b, char flag)
 	return (step_find_min(step_h_dict));
 }
 
-int		define_target(t_dict* head_dict, char flag, t_stack *b, t_element* a_move) // находит target-числло из b  для ОДНОГО числа из стака а
+int	define_target(t_dict *head_dict, char flag, t_stack *b, t_element *a_move) // находит target-числло из b  для ОДНОГО числа из стака а
 {
 	t_dict	*dict_node;
 	int		pos;
@@ -67,7 +69,7 @@ int		define_target(t_dict* head_dict, char flag, t_stack *b, t_element* a_move) 
 	return (target);
 }
 
-int		find_target(t_dict* head_dict, int pos, int neg, char flag)
+int	find_target(t_dict *head_dict, int pos, int neg, char flag)
 {
 	t_dict	*dict_node;
 	int		target;
@@ -114,15 +116,14 @@ t_dict*	find_value(int num_a, t_stack *b, t_dict *head_dict) // находит �
 	return (head_dict);
 }
 
-int		l_find_min_pos(t_dict *head_dict, int pos)
+int	l_find_min_pos(t_dict *head_dict, int pos)
 {
 	t_dict *dict;
 
 	dict = head_dict;
 	if (pos == 1)
 		return (l_find_max(head_dict));
-	
-	while(dict)
+	while (dict)
 	{
 		if (dict->value < 0)
 			dict->value = 2147483647;
@@ -131,14 +132,14 @@ int		l_find_min_pos(t_dict *head_dict, int pos)
 	return (l_find_min(head_dict));
 }
 
-int		l_find_max_neg(t_dict *head_dict, int neg)
+int	l_find_max_neg(t_dict *head_dict, int neg)
 {
 	t_dict *dict;
 
 	dict = head_dict;
 	if (neg == 1)
 		return (l_find_min(head_dict));
-	while(dict)
+	while (dict)
 	{
 		if (dict->value > 0)
 			dict->value = -2147483648;

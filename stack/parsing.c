@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:14:34 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/15 17:51:52 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:41:51 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ int	check_if_in_int(char **arr)
 {
 	int	arg;
 
-	arg = 1;
+	arg = 0;
 	while (arr[arg])
 	{
-		// printf("%d\n", ft_atoi(arr[arg]));
 		/* if (ft_atoi(arr[arg]) > INT_MAX || ft_atoi(arr[arg]) < INT_MIN)
 		{
 			printf("big-int3!\n");
@@ -40,6 +39,8 @@ int	check_if_in_int(char **arr)
 		{
 			return (1);
 		}
+		// printf("%d\n", ft_atoi(arr[arg]));
+		
 		arg++;
 	}
 	return (0);

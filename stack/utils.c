@@ -27,7 +27,7 @@ void	print_elements(t_stack *stack)
 	head = stack->top;
 	while (head)
 	{
-		printf("%d ", head->data);
+		ft_printf("%d ", head->data);
 		head = head->next;
 	}
 	return ;
@@ -50,7 +50,6 @@ void	change_index(t_stack *stack)
 
 void	finish(t_stack *a, t_stack *b)
 {
-	print_elements(a);
 	if (b && !is_empty(b))
 	{
 		while (b->amount != 0)

@@ -43,19 +43,23 @@ NAME = push_swap
 
 $(NAME): $(OBJS)
 	cd libft && make && make bonus
-	$(CC) $(CFLAGS) $(OBJS)  libft/libft.a -o $(NAME)
+	cd ft_printf && make
+	$(CC) $(CFLAGS) $(OBJS) ft_printf/libftprintf.a libft/libft.a -o $(NAME)
 
 all: $(NAME)
 
 clean : 
 	rm -f push_swap $(OBJS)
 	cd libft && make clean
+	cd ft_printf && make clean
 
 fclean : clean
 	rm -f $(NAME)
 	cd libft && make fclean
+	cd ft_printf && make fclean
 
 re : fclean all
 	cd libft && make fclean && make all
+	cd ft_printf && make fclean && make all
 
 .PHONY : all clean fclean re bonus

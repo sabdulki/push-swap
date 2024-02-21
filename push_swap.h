@@ -21,7 +21,7 @@
 # include "./libft/libft.h"
 # include "./stack/stack.h"
 # include "./target/target.h"
-// # include "./ft_printf/ft_printf.h"
+# include "./ft_printf/ft_printf.h"
 
 t_stack		*make_base_for_stack(void);
 t_stack		*base_and_parsing(int argc, char **argv);

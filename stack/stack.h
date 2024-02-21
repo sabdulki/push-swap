@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 21:21:15 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/21 15:16:51 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:50:37 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <limits.h>
 # include <stdbool.h>
 # include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
 
 // element of stack
 typedef struct s_elem{

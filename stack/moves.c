@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 14:57:26 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/21 15:11:29 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:53:18 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	swap_move(t_stack *stack, char flag)
 	stack->top->next = tmp;
 	stack->top->next->index = 2;
 	if (flag == 'a')
-		printf("sa\n");
+		ft_printf("sa\n");
 	else if (flag == 'b')
-		printf("sb\n");
+		ft_printf("sb\n");
 	return ;
 }
 
@@ -45,9 +45,9 @@ int	push_move(t_stack *a, t_stack *b, char flag)
 		return (1);
 	change_index(a);
 	if (flag == 'a')
-		printf("pb\n");
+		ft_printf("pb\n");
 	else if (flag == 'b')
-		printf("pa\n");
+		ft_printf("pa\n");
 	return (0);
 }
 
@@ -66,9 +66,9 @@ void	rotate_move(t_stack *stack, char flag)
 	tmp->data = first_int;
 	change_index(stack);
 	if (flag == 'a')
-		printf("ra\n");
+		ft_printf("ra\n");
 	else if (flag == 'b')
-		printf("rb\n");
+		ft_printf("rb\n");
 	return ;
 }
 
@@ -87,8 +87,8 @@ void	rev_rotate_move(t_stack *stack, char flag)
 	stack->top->data = last_int;
 	change_index(stack);
 	if (flag == 'a')
-		printf("rra\n");
+		ft_printf("rra\n");
 	else if (flag == 'b')
-		printf("rrb\n");
+		ft_printf("rrb\n");
 	return ;
 }

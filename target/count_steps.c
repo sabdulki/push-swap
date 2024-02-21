@@ -6,13 +6,13 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 20:35:43 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/21 15:15:52 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:48:42 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "target.h"
 
-int	count_steps(t_stack *a, t_stack *b, t_elem *tmp_a, t_elem *target)
+int	count_steps(t_stack *a, t_stack *b, t_elem *tmp_a, int target)
 {
 	int	steps_a;
 	int	steps_b;
@@ -40,7 +40,7 @@ int	count_a_steps(t_stack *a, t_elem *tmp_a)
 	return (steps_a);
 }
 
-int	count_b_steps(t_stack *b, t_elem *target)
+int	count_b_steps(t_stack *b, int target)
 {
 	t_elem	*tmp_b;
 	int		steps_b;
@@ -56,17 +56,16 @@ int	count_b_steps(t_stack *b, t_elem *target)
 	return (steps_b);
 }
 
-t_elem	*find_target_index(t_stack *b, t_elem *target)
+t_elem	*find_target_index(t_stack *b, int target)
 {
 	t_elem	*tmp;
 
 	tmp = b->top;
 	while (tmp)
 	{
-		if (tmp->data == target->data)
+		if (tmp->data == target)
 			return (tmp);
 		tmp = tmp->next;
 	}
-	printf("haven't found element with the same number. Return head of stack");
 	return (b->top);
 }

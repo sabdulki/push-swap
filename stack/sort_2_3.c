@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:07:22 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/21 15:24:13 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:53:57 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	sort_two(t_stack *a)
 		tmp = a->top->data;
 		a->top->data = min->data;
 		min->data = tmp;
-		printf("sa\n");
+		ft_printf("sa\n");
 	}
 	return ;
 }

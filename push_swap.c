@@ -32,11 +32,7 @@ t_stack	*base_and_parsing(int argc, char **argv)
 	if (!stack)
 		return (NULL);
 	if (parsing(argc, argv, stack) == 1)
-	{
-		printf("there\n");
-
 		return (destroy(stack), NULL);
-	}
 	return (stack);
 }
 
@@ -58,7 +54,6 @@ int	main(int argc, char **argv)
 		finish (a, NULL);
 		ft_error();
 	}
-	// sort_three_rev(a);
 	if (sort_all(a, b) == 1)
 	{
 		finish (a, NULL);

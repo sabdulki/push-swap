@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:07:22 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/15 13:34:12 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:24:13 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	sort_2_3(t_stack *a)
 
 void	sort_two(t_stack *a)
 {
-	int			tmp;
-	t_element	*min;
+	int		tmp;
+	t_elem	*min;
 
 	min = find_min(a);
 	if (a->top->data != min->data)
@@ -39,9 +39,9 @@ void	sort_two(t_stack *a)
 
 void	sort_three(t_stack *a, char flag)
 {
-	t_element	*max;
-	t_element	*min;
-	t_element	*last;
+	t_elem	*max;
+	t_elem	*min;
+	t_elem	*last;
 
 	last = get_last_elem(a);
 	max = find_max(a);
@@ -68,27 +68,26 @@ void	sort_three(t_stack *a, char flag)
 
 void	sort_three_rev(t_stack *b)
 {
-	t_element	*last;
+	t_elem	*last;
+	t_elem	*min;
 
 	last = get_last_elem(b);
+	min = find_min(b);
 	if (is_decreasing(b))
 		return ;
-	else if (last->data == find_max(b)->data && b->top->data != find_min(b)->data)
-	{
-		rotate_move(b, 'b');
-		rotate_move(b, 'b');
-	}
-	else if (last->data == find_max(b)->data && b->top->data == find_min(b)->data)
+	else if (last->data == find_max(b)->data && b->top->data != min->data)
+		rev_rotate_move(b, 'b');
+	else if (last->data == find_max(b)->data && b->top->data == min->data)
 	{
 		swap_move(b, 'b');
 		rev_rotate_move(b, 'b');
 	}
-	else if (find_max(b)->data == b->top->data && find_min(b)->data != last->data)
+	else if (find_max(b)->data == b->top->data && min->data != last->data)
 	{
 		rev_rotate_move(b, 'b');
 		swap_move(b, 'b');
 	}
-	else if (last->data == find_min(b)->data && b->top->data != find_max(b)->data)
+	else if (last->data == min->data && b->top->data != find_max(b)->data)
 		swap_move(b, 'b');
 	else
 		rotate_move(b, 'b');

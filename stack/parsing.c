@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:14:34 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/19 17:41:51 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:40:34 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,11 @@ int	check_if_in_int(char **arr)
 	arg = 0;
 	while (arr[arg])
 	{
-		/* if (ft_atoi(arr[arg]) > INT_MAX || ft_atoi(arr[arg]) < INT_MIN)
-		{
-			printf("big-int3!\n");
-			return (1);
-		}*/
 		if ((arr[arg][0] == '-' && ft_atoi(arr[arg]) >= 0) \
 		|| (arr[arg][0] != '-' && ft_atoi(arr[arg]) < 0))
 		{
 			return (1);
 		}
-		// printf("%d\n", ft_atoi(arr[arg]));
-		
 		arg++;
 	}
 	return (0);
@@ -62,8 +55,8 @@ int	check_if_int(char *str)
 
 int	check_dups(t_stack *stack)
 {
-	t_element	*tmp;
-	t_element	*tmp2;
+	t_elem	*tmp;
+	t_elem	*tmp2;
 
 	tmp = stack->top;
 	while (tmp)

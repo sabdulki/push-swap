@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:51:56 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/19 21:53:39 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:14:12 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 t_dict	*find_most_profit_num(t_stack *a, t_stack *b, char flag)
 {
-	t_element	*tmp_a;
-	t_element	*target;
-	t_dict		*step_dict;
-	t_dict		*step_h_dict;
-	t_dict		*dict;
-	t_dict		*dict_head;
+	t_elem	*tmp_a;
+	t_elem	*target;
+	t_dict	*step_dict;
+	t_dict	*step_h_dict;
+	t_dict	*dict;
+	t_dict	*dict_head;
 
-	target = malloc(sizeof(t_element));
+	target = malloc(sizeof(t_elem));
 	if (!target)
 		return (NULL);
 	tmp_a = a->top;
@@ -45,14 +45,15 @@ t_dict	*find_most_profit_num(t_stack *a, t_stack *b, char flag)
 	return (step_find_min(step_h_dict));
 }
 
-int	define_target(t_dict *head_dict, char flag, t_stack *b, t_element *a_move) // находит target-числло из b  для ОДНОГО числа из стака а
+// находит target-числло из b  для ОДНОГО числа из стака а
+int	define_target(t_dict *h_dict, char flag, t_stack *b, t_elem *a_move) 
 {
 	t_dict	*dict_node;
 	int		pos;
 	int		neg;
 	int		target;
 
-	dict_node = head_dict;
+	dict_node = h_dict;
 	pos = 0;
 	neg = 0;
 	if ((a_move->data > find_max(b)->data || a_move->data < find_min(b)->data))
@@ -65,7 +66,7 @@ int	define_target(t_dict *head_dict, char flag, t_stack *b, t_element *a_move) /
 			neg++;
 		dict_node = dict_node->next;
 	}
-	target = find_target(head_dict, pos, neg, flag);
+	target = find_target(h_dict, pos, neg, flag);
 	return (target);
 }
 
@@ -97,10 +98,11 @@ int	find_target(t_dict *head_dict, int pos, int neg, char flag)
 	return (target);
 }
 
-t_dict*	find_value(int num_a, t_stack *b, t_dict *head_dict) // находит все value для ОДНОГО числа из стака а
+// находит все value для ОДНОГО числа из стака а
+t_dict*	find_value(int num_a, t_stack *b, t_dict *head_dict) 
 {
-	t_element	*tmp_b;
-	t_dict		*dict_node;
+	t_elem	*tmp_b;
+	t_dict	*dict_node;
 
 	tmp_b = b->top;
 	dict_node = head_dict;

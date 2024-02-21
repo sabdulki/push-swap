@@ -12,10 +12,10 @@
 
 #include "stack.h"
 
-t_element	*find_min(t_stack *stack)
+t_elem	*find_min(t_stack *stack)
 {
-	t_element	*tmp;
-	t_element	*min;
+	t_elem	*tmp;
+	t_elem	*min;
 
 	tmp = stack->top;
 	min = stack->top;
@@ -28,10 +28,10 @@ t_element	*find_min(t_stack *stack)
 	return (min);
 }
 
-t_element	*find_max(t_stack *stack)
+t_elem	*find_max(t_stack *stack)
 {
-	t_element	*tmp;
-	t_element	*max;
+	t_elem	*tmp;
+	t_elem	*max;
 
 	tmp = stack->top;
 	max = stack->top;
@@ -53,7 +53,7 @@ bool	is_empty(t_stack *stack)
 
 int	is_ascending(t_stack *stack)
 {
-	t_element	*tmp;
+	t_elem	*tmp;
 
 	if (!stack || !stack->top || stack->amount == 0)
 		return (false);
@@ -69,8 +69,8 @@ int	is_ascending(t_stack *stack)
 
 int	is_decreasing(t_stack *stack)
 {
-	t_element	*tmp;
-	t_element	*last;
+	t_elem	*tmp;
+	t_elem	*last;
 
 	tmp = stack->top;
 	last = get_last_elem(stack);

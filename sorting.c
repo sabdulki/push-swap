@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:09:57 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/19 21:22:23 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:11:02 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	first_pushes(t_stack *a, t_stack *b, char flag)
 
 int	push_to_a(t_stack *a, t_stack *b, int flag)
 {
-	t_dict		*moving_num;
-	t_element	*last;
+	t_dict	*moving_num;
+	t_elem	*last;
 
 	last = get_last_elem(b);
 	while (a->amount != 3)
@@ -75,8 +75,8 @@ int	push_to_b(t_stack *a, t_stack *b, int flag)
 
 int	sort(t_stack *a, t_stack *b)
 {
-	t_element	*a_move;
-	char		flag;
+	t_elem	*a_move;
+	char	flag;
 
 	flag = 'a';
 	if (first_pushes(a, b, flag) == 1)

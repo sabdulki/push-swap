@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:43:06 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/19 19:21:03 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:16:05 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	parsing(int argc, char **argv, t_stack *stack)
 	char	*str;
 	char	**future_stack;
 
-	str = ft_ex_join(argc, argv, " "); // deleted the name of programm from arguments
+	str = ft_ex_join(argc, argv, " ");
 	if (!str)
 		return (1);
 	if (check_if_int(str) == 1)
@@ -31,11 +31,11 @@ int	parsing(int argc, char **argv, t_stack *stack)
 	return (create_stack(stack, future_stack));
 }
 
-int	create_stack(t_stack *stack, char	**future_stack)
+int	create_stack(t_stack *stack, char **future_stack)
 {
-	int		num_count;
-	int		counter;
-	int		num;
+	int	num_count;
+	int	counter;
+	int	num;
 
 	counter = 0;
 	num_count = arr_strlen(future_stack);

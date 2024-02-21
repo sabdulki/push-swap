@@ -6,15 +6,15 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:04:51 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/19 21:14:02 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:40:34 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_element	*find_position_in_a(t_stack *a, t_dict *moving_num)
+t_elem	*find_position_in_a(t_stack *a, t_dict *moving_num)
 {
-	t_element	*tmp;
+	t_elem	*tmp;
 
 	tmp = a->top;
 	while (tmp)
@@ -23,13 +23,12 @@ t_element	*find_position_in_a(t_stack *a, t_dict *moving_num)
 			return (tmp);
 		tmp = tmp->next;
 	}
-	// printf("haven't found element with the same number. Return head of stack\n");
 	return (a->top);
 }
 
-t_element	*find_position_in_b(t_stack *b, t_dict *moving_num)
+t_elem	*find_position_in_b(t_stack *b, t_dict *moving_num)
 {
-	t_element	*tmp;
+	t_elem	*tmp;
 
 	tmp = b->top;
 	while (tmp)
@@ -38,6 +37,5 @@ t_element	*find_position_in_b(t_stack *b, t_dict *moving_num)
 			return (tmp);
 		tmp = tmp->next;
 	}
-	// printf("haven't found element with the same number. Return head of stack\n");
 	return (b->top);
 }

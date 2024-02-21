@@ -15,21 +15,15 @@
 void	ft_error(void)
 {
 	write(2, "Error\n", 6);
-	// finish
-	// free everything!!!!!!
 	exit(0);
 }
 
 void	print_elements(t_stack *stack)
 {
-	t_element	*head;
+	t_elem	*head;
 
 	if (is_empty(stack))
-	{
-		// printf("there are no elements in the stack 'cause it is empty!\n");
 		return ;
-	}
-	// printf("the elements of stack are:\n");
 	head = stack->top;
 	while (head)
 	{
@@ -41,8 +35,8 @@ void	print_elements(t_stack *stack)
 
 void	change_index(t_stack *stack)
 {
-	t_element	*tmp_top;
-	int			index;
+	t_elem	*tmp_top;
+	int		index;
 
 	tmp_top = stack->top;
 	index = 1;
@@ -64,5 +58,4 @@ void	finish(t_stack *a, t_stack *b)
 	}
 	destroy(a);
 	destroy(b);
-	// exit(0);
 }

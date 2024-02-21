@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:23:54 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/19 21:11:47 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:10:07 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	make_a_move(t_stack *a, t_stack *b, t_dict *moving_num, char flag)
 
 void	move_in_a(t_stack *a, t_dict *moving_num, char flag)
 {
-	int			median;
-	int			a_move_data;
-	t_element	*a_move;
+	int		median;
+	int		a_move_data;
+	t_elem	*a_move;
 
 	if (a->amount == 1)
 		return ;
@@ -46,23 +46,23 @@ void	move_in_a(t_stack *a, t_dict *moving_num, char flag)
 	return ;
 }
 
-void	move_in_b(t_stack *b, t_dict *moving_num, char flag)
+void	move_in_b(t_stack *b, t_dict *m_num, char flag)
 {
-	t_element	*b_move;
-	t_element	*last;
+	t_elem	*b_move;
+	t_elem	*last;
 
 	last = get_last_elem(b);
 	if (b->amount == 1)
 		return ;
-	b_move = find_position_in_b(b, moving_num);
+	b_move = find_position_in_b(b, m_num);
 	if (flag == 'a')
 	{
-		if (moving_num->a_int < find_min(b)->data && find_min(b)->data == last->data)
+		if (m_num->a_int < find_min(b)->data && find_min(b)->data == last->data)
 			return ;
 	}
 	else if (flag == 'b')
 	{
-		if (moving_num->a_int > find_max(b)->data && find_max(b)->data == last->data)
+		if (m_num->a_int > find_max(b)->data && find_max(b)->data == last->data)
 			return ;
 	}
 	if (flag == 'a')
@@ -73,7 +73,7 @@ void	move_in_b(t_stack *b, t_dict *moving_num, char flag)
 	return ;
 }
 
-void	target_in_b_is_top(t_stack *b, t_element *b_move, char flag)
+void	target_in_b_is_top(t_stack *b, t_elem *b_move, char flag)
 {
 	int	b_move_data;
 	int	median;

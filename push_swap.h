@@ -24,20 +24,21 @@
 // # include "./ft_printf/ft_printf.h"
 
 t_stack		*make_base_for_stack(void);
-t_stack		*preparation(int argc, char **argv);
+t_stack		*base_and_parsing(int argc, char **argv);
 
 // sorting
 int			min(int x, int y);
 int			sort(t_stack *a, t_stack *b);
+int			sort_all(t_stack *a, t_stack *b);
 int			first_pushes(t_stack *a, t_stack *b, char flag);
 int			push_to_a(t_stack *a, t_stack *b, int flag);
 int			push_to_b(t_stack *a, t_stack *b, int flag);
 int			make_a_move(t_stack *a, t_stack *b, t_dict *moving_num, char flag);
 void		move_in_a(t_stack *a, t_dict *moving_num, char flag);
 void		move_in_b(t_stack *b, t_dict *moving_num, char flag);
-void		target_in_b_is_top(t_stack *b, t_element *b_move, char flag);
+void		target_in_b_is_top(t_stack *b, t_elem *b_move, char flag);
 t_dict		*find_most_profit_num(t_stack *a, t_stack *b, char flag);
-t_element	*find_position_in_a(t_stack *a, t_dict *moving_num);
-t_element	*find_position_in_b(t_stack *b, t_dict *moving_num);
+t_elem		*find_position_in_a(t_stack *a, t_dict *moving_num);
+t_elem		*find_position_in_b(t_stack *b, t_dict *moving_num);
 
 #endif

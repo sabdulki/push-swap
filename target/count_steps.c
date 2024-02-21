@@ -6,13 +6,13 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 20:35:43 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/19 21:23:24 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:15:52 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "target.h"
 
-int	count_steps(t_stack *a, t_stack *b, t_element *tmp_a, t_element *target)
+int	count_steps(t_stack *a, t_stack *b, t_elem *tmp_a, t_elem *target)
 {
 	int	steps_a;
 	int	steps_b;
@@ -26,7 +26,7 @@ int	count_steps(t_stack *a, t_stack *b, t_element *tmp_a, t_element *target)
 	return (all_steps);
 }
 
-int	count_a_steps(t_stack *a, t_element *tmp_a)
+int	count_a_steps(t_stack *a, t_elem *tmp_a)
 {
 	int	steps_a;
 	int	median;
@@ -40,11 +40,11 @@ int	count_a_steps(t_stack *a, t_element *tmp_a)
 	return (steps_a);
 }
 
-int	count_b_steps(t_stack *b, t_element *target)
+int	count_b_steps(t_stack *b, t_elem *target)
 {
-	t_element	*tmp_b;
-	int			steps_b;
-	int			median;
+	t_elem	*tmp_b;
+	int		steps_b;
+	int		median;
 
 	tmp_b = find_target_index(b, target);
 	median = b->amount / 2;
@@ -56,9 +56,9 @@ int	count_b_steps(t_stack *b, t_element *target)
 	return (steps_b);
 }
 
-t_element	*find_target_index(t_stack *b, t_element *target)
+t_elem	*find_target_index(t_stack *b, t_elem *target)
 {
-	t_element	*tmp;
+	t_elem	*tmp;
 
 	tmp = b->top;
 	while (tmp)

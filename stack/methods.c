@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:54:43 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/15 15:59:36 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:40:34 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	push(t_stack *stack, int num)
 {
-	t_element	*new_num;
+	t_elem	*new_num;
 
-	new_num = malloc(sizeof(t_element));
+	new_num = malloc(sizeof(t_elem));
 	if (!new_num)
 		return (1);
 	new_num->data = num;
@@ -32,13 +32,10 @@ int	push(t_stack *stack, int num)
 
 int	pop(t_stack *stack)
 {
-	t_element	*tmp;
+	t_elem	*tmp;
 
 	if (is_empty(stack))
-	{
-		// printf("you can't pop an element 'cause the stack is empty\n");
 		return (1);
-	}
 	tmp = stack->top;
 	stack->top = stack->top->next;
 	if (stack->top)
@@ -54,9 +51,9 @@ int	peek(t_stack *stack)
 	return (stack->top->data);
 }
 
-t_element	*get_last_elem(t_stack *stack)
+t_elem	*get_last_elem(t_stack *stack)
 {
-	t_element	*tmp2;
+	t_elem	*tmp2;
 
 	tmp2 = stack->top;
 	while (tmp2 && tmp2->next != NULL)
@@ -69,13 +66,9 @@ t_element	*get_last_elem(t_stack *stack)
 int	destroy(t_stack *stack)
 {
 	if (!stack)
-	{
-		// printf("there are no stack. return 0.\n");
 		return (0);
-	}
 	if (is_empty(stack))
 	{
-		// printf("you can't destroy the stack 'cause it is empty\n");
 		free(stack);
 		return (0);
 	}

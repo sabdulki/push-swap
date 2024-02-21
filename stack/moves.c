@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 14:57:26 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/15 16:00:10 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:11:29 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	swap_move(t_stack *stack, char flag)
 {
-	t_element	*tmp;
+	t_elem	*tmp;
 
 	tmp = stack->top;
 	stack->top = stack->top->next;
@@ -53,8 +53,8 @@ int	push_move(t_stack *a, t_stack *b, char flag)
 
 void	rotate_move(t_stack *stack, char flag)
 {
-	t_element	*tmp;
-	int			first_int;
+	t_elem	*tmp;
+	int		first_int;
 
 	first_int = stack->top->data;
 	tmp = stack->top;
@@ -74,8 +74,8 @@ void	rotate_move(t_stack *stack, char flag)
 
 void	rev_rotate_move(t_stack *stack, char flag)
 {
-	t_element	*last;
-	int			last_int;
+	t_elem	*last;
+	int		last_int;
 
 	last = get_last_elem(stack);
 	last_int = last->data;

@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 
-	if (argc <= 2)
+	if (argc <= 1)
 		return (0);
 	a = base_and_parsing(argc, argv);
 	if (!a)

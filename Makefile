@@ -38,11 +38,11 @@ OBJS = $(SRCS:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 #  -fsanitize=address -g3
-# LIBFT = ./libft-42/libft.a
+
 NAME = push_swap
 
 $(NAME): $(OBJS)
-	cd libft && make && make bonus
+	cd libft && make
 	cd ft_printf && make
 	$(CC) $(CFLAGS) $(OBJS) ft_printf/libftprintf.a libft/libft.a -o $(NAME)
 
@@ -62,4 +62,4 @@ re : fclean all
 	cd libft && make fclean && make all
 	cd ft_printf && make fclean && make all
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re

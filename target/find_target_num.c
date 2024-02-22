@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:51:56 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/21 17:47:34 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:37:21 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_dict	*find_most_profit_num(t_stack *a, t_stack *b, char flag)
 		tmp_a = tmp_a->next;
 		step_d = step_d->next;
 	}
-	free(h_dict);
+	free_dict(h_dict);
 	return (step_find_min(step_h_d));
 }
 

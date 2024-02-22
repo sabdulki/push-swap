@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:38:01 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/21 17:47:29 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:34:41 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@ t_dict	*create_dictinary(t_stack *b)
 {
 	t_dict	*head;
 	t_dict	*current;
-	int		i;
 
 	if (b->amount <= 0)
 		return (NULL);
 	head = malloc(sizeof(t_dict));
 	if (!head)
 		return (NULL);
-	i = 1;
 	head->a_int = 0;
 	head->value = 0;
 	head->next = NULL;

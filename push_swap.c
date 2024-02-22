@@ -45,7 +45,10 @@ int	main(int argc, char **argv)
 		return (0);
 	a = base_and_parsing(argc, argv);
 	if (!a)
+	{
+		finish(a, NULL);
 		ft_error();
+	}
 	if (is_ascending(a))
 		return (finish(a, NULL), 0);
 	b = make_base_for_stack();

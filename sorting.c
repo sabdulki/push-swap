@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:09:57 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/21 15:11:02 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/24 18:36:06 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	first_pushes(t_stack *a, t_stack *b, char flag)
 int	push_to_a(t_stack *a, t_stack *b, int flag)
 {
 	t_dict	*moving_num;
+	t_dict	*step_h_d;
 	t_elem	*last;
 
 	last = get_last_elem(b);
@@ -45,12 +46,13 @@ int	push_to_a(t_stack *a, t_stack *b, int flag)
 			rotate_move(b, 'b');
 		if (b->amount == 3)
 			sort_three_rev(b);
-		moving_num = find_most_profit_num(a, b, flag);
-		if (!moving_num)
+		step_h_d = find_most_profit_num(a, b, flag);
+		if (!step_h_d)
 			return (1);
+		moving_num = step_find_min(step_h_d);
 		if (make_a_move(a, b, moving_num, flag) == 1)
 			return (1);
-		free_dict(moving_num);
+		free_dict(step_h_d);
 	}
 	return (0);
 }
@@ -58,12 +60,14 @@ int	push_to_a(t_stack *a, t_stack *b, int flag)
 int	push_to_b(t_stack *a, t_stack *b, int flag)
 {
 	t_dict	*moving_num;
+	t_dict	*step_h_d;
 
 	while (b->amount != 0)
 	{
-		moving_num = find_most_profit_num(b, a, flag);
-		if (!moving_num)
+		step_h_d = find_most_profit_num(b, a, flag);
+		if (!step_h_d)
 			return (1);
+		moving_num = step_find_min(step_h_d);
 		if (make_a_move(b, a, moving_num, flag) == 1)
 			return (1);
 		if (peek(a) == find_max(a)->data)

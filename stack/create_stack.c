@@ -6,7 +6,7 @@
 /*   By: sabdulki <sabdulki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:43:06 by sabdulki          #+#    #+#             */
-/*   Updated: 2024/02/21 16:16:05 by sabdulki         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:19:06 by sabdulki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,19 @@ int	parsing(int argc, char **argv, t_stack *stack)
 	if (!str)
 		return (1);
 	if (check_if_int(str) == 1)
+	{
+		free(str);
 		return (1);
+	}
 	future_stack = ft_split(str, ' ');
+	free(str);
 	if (!future_stack)
 		return (1);
-	free(str);
 	if (check_if_in_int(future_stack))
+	{
+		free_split(future_stack);
 		return (1);
+	}
 	return (create_stack(stack, future_stack));
 }
 
@@ -43,7 +49,10 @@ int	create_stack(t_stack *stack, char **future_stack)
 	{
 		num = ft_atoi(future_stack[num_count - counter]);
 		if (push(stack, num) == 1)
+		{
+			free_split(future_stack);
 			return (1);
+		}
 		counter++;
 	}
 	free_split(future_stack);
